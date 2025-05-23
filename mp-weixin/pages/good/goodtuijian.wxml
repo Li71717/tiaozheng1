@@ -1,0 +1,25 @@
+<view>
+  <u-navbar
+    vue-id="1a9f80c8-1"
+    title="{{title}}"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <img-list
+      vue-id="1a9f80c8-2"
+      imgSize="{{10}}"
+      imgName="img"
+      titleName="gname"
+      dataList="{{fobjList}}"
+      sName="shop"
+      t-label="价格:"
+      tName="price"
+      data-event-opts="{{[['^clickItem',[['toGoodDetail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></img-list>
+  </scroll-view>
+</view>

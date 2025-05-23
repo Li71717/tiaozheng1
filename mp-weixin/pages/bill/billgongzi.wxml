@@ -1,0 +1,26 @@
+<view>
+  <u-navbar
+    vue-id="6737e560-1"
+    title="工资详情"
+    border="{{true}}"
+    placeholder="{{true}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <view style="text-align:center;font-size:40rpx;color:red;">
+      {{"工资提成:"+gztotal+"元"}}
+    </view>
+    <imglist
+      vue-id="6737e560-2"
+      tLabel="提成:"
+      dataList="{{fobjlist}}"
+      imgSize="{{20}}"
+      titleName="ndate"
+      sName="gnames"
+      tName="tc"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>

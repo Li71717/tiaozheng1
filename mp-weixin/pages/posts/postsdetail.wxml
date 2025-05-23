@@ -1,0 +1,69 @@
+<view>
+  <u-navbar
+    vue-id="1b48e267-1"
+    title="详细信息"
+    border="{{true}}"
+    placeholder="{{true}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <block wx:if="{{fobj.img}}">
+      <image style="width:100%;" src="{{fileUrl+fobj.img}}" mode="widthFix"></image>
+    </block>
+    <view class="formitem">
+      <view class="gprice">{{"标题:"+fobj.title}}</view>
+    </view>
+    <view class="formitem">
+      <view class="gtitle">{{fobj.username}}</view>
+    </view>
+    <view class="formitem">
+      <u-parse
+        vue-id="1b48e267-2"
+        content="{{fobj.note}}"
+        bind:__l="__l"
+      ></u-parse>
+    </view>
+    <view class="hpaddingctn">
+      <u-button
+        vue-id="1b48e267-3"
+        text="私信"
+        data-event-opts="{{[['^click',[['toChat']]]]}}"
+        bind:click="__e"
+        bind:__l="__l"
+      ></u-button>
+    </view>
+    <img-list
+      vue-id="1b48e267-4"
+      imgSize="20"
+      tName="username"
+      showSearch="{{false}}"
+      showArrow="{{false}}"
+      dataList="{{replaylist}}"
+      titleName="ndate"
+      sName="note"
+      bind:__l="__l"
+    ></img-list>
+    <view class="hpaddingctn">
+      <u--textarea
+        bind:input="__e"
+        vue-id="1b48e267-5"
+        placeholder="发表你的评论吧"
+        confirmType="done"
+        value="{{rnote}}"
+        data-event-opts="{{[['^input',[['__set_model',['','rnote','$event',[]]]]]]}}"
+        bind:__l="__l"
+      ></u--textarea>
+    </view>
+    <view class="hpaddingctn">
+      <u-button
+        vue-id="1b48e267-6"
+        text="评论"
+        data-event-opts="{{[['^click',[['replay']]]]}}"
+        bind:click="__e"
+        bind:__l="__l"
+      ></u-button>
+    </view>
+  </scroll-view>
+</view>

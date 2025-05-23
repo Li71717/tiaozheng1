@@ -1,0 +1,25 @@
+<view>
+  <u-navbar
+    vue-id="92e390d0-1"
+    title="{{title}}"
+    border="{{true}}"
+    placeholder="{{true}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <imglist
+      vue-id="92e390d0-2"
+      imgSize="{{2}}"
+      sType="1"
+      titleName="title"
+      dataList="{{fobjList}}"
+      tName="username"
+      sName="ndate"
+      data-event-opts="{{[['^clickItem',[['toPostsDetail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>

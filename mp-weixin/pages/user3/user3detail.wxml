@@ -1,0 +1,60 @@
+<view>
+  <u-navbar
+    vue-id="2f58ebfd-1"
+    title="{{fobj.fname}}"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <image
+      class="showimg"
+      style="width:50%;margin-left:25%;"
+      src="{{fileUrl+fobj.img}}"
+      mode="widthFix"
+    ></image>
+    <view class="formitem">
+      <view class="formlabel">{{"姓名:"+fobj.fname}}</view>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">{{"技能:"+fobj.jn}}</view>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">{{"电话:"+fobj.tel}}</view>
+    </view>
+    <view class="formitem">
+      <u-button
+        vue-id="2f58ebfd-2"
+        type="primary"
+        text="咨询聊天"
+        data-event-opts="{{[['^click',[['toChat']]]]}}"
+        bind:click="__e"
+        bind:__l="__l"
+      ></u-button>
+    </view>
+    <u-parse
+      vue-id="2f58ebfd-3"
+      content="{{fobj.note}}"
+      bind:__l="__l"
+    ></u-parse>
+    <img-list
+      vue-id="2f58ebfd-4"
+      imgSize="{{20}}"
+      tName="username"
+      showSearch="{{false}}"
+      showArrow="{{false}}"
+      dataList="{{replaylist}}"
+      titleName="ndate"
+      sName="note"
+      bind:__l="__l"
+    ></img-list>
+    <view class="footerctn"></view>
+    <tn-tips
+      class="vue-ref"
+      vue-id="2f58ebfd-5"
+      data-ref="tips"
+      bind:__l="__l"
+    ></tn-tips>
+  </scroll-view>
+</view>

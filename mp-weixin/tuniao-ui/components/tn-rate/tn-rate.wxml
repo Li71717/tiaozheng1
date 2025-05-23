@@ -1,0 +1,21 @@
+<view
+  class="tn-rate-class tn-rate data-v-25ace624"
+  id="{{elId}}"
+  data-event-opts="{{[['touchmove',[['touchMove',['$event']]]]]}}"
+  catchtouchmove="__e"
+>
+  <block wx:for="{{$root.l0}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <view class="{{['tn-rate__wrap','data-v-25ace624',elClass]}}">
+      <view
+        data-event-opts="{{[['tap',[['click',[index+1,'$event']]]]]}}"
+        class="{{['tn-rate__wrap__icon','data-v-25ace624','tn-icon-'+((allowHalf&&halfIcon?activeIndex>index+1:activeIndex>index)?elActionIcon:elInactionIcon)]}}"
+        style="{{item.s0}}"
+        bindtap="__e"
+      >
+        <block wx:if="{{item.m0}}">
+          <view class="{{['tn-rate__wrap__icon--half','data-v-25ace624','tn-icon-'+elActionIcon]}}" style="{{item.s1}}"></view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>

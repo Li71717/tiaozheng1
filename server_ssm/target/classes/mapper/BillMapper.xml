@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ideabobo.service.BillMapper">
+  <resultMap id="BaseResultMap" type="com.ideabobo.model.Bill">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gids" jdbcType="VARCHAR" property="gids" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="shop" jdbcType="VARCHAR" property="shop" />
+    <result column="ndate" jdbcType="VARCHAR" property="ndate" />
+    <result column="total" jdbcType="VARCHAR" property="total" />
+    <result column="gnames" jdbcType="VARCHAR" property="gnames" />
+    <result column="sid" jdbcType="VARCHAR" property="sid" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="statecn" jdbcType="VARCHAR" property="statecn" />
+    <result column="pnote" jdbcType="VARCHAR" property="pnote" />
+    <result column="pf" jdbcType="VARCHAR" property="pf" />
+    <result column="gcounts" jdbcType="VARCHAR" property="gcounts" />
+    <result column="ydate" jdbcType="VARCHAR" property="ydate" />
+    <result column="tc" jdbcType="VARCHAR" property="tc" />
+    <result column="actual_service_start_time" jdbcType="TIMESTAMP" property="actual_service_start_time" />
+    <result column="actual_service_end_time" jdbcType="TIMESTAMP" property="actual_service_end_time" />
+    <result column="worker_free_time_after_this_bill" jdbcType="TIMESTAMP" property="worker_free_time_after_this_bill" />
+    <result column="service_duration_hours_applied" jdbcType="DECIMAL" property="service_duration_hours_applied" />
+    <result column="travel_time_hours_applied" jdbcType="DECIMAL" property="travel_time_hours_applied" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gids, user, uid, shop, ndate, total, gnames, sid, tel, address, note, statecn, 
+    pnote, pf, gcounts, ydate, tc, actual_service_start_time, actual_service_end_time,
+    worker_free_time_after_this_bill, service_duration_hours_applied, travel_time_hours_applied
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wct_bill
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wct_bill
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ideabobo.model.Bill">
+    insert into wct_bill (id, gids, user, 
+      uid, shop, ndate, total, 
+      gnames, sid, tel, address, 
+      note, statecn, pnote, 
+      pf, gcounts, ydate, 
+      tc, actual_service_start_time,
+      actual_service_end_time, worker_free_time_after_this_bill,
+      service_duration_hours_applied, travel_time_hours_applied)
+    values (#{id,jdbcType=INTEGER}, #{gids,jdbcType=VARCHAR}, #{user,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=VARCHAR}, #{shop,jdbcType=VARCHAR}, #{ndate,jdbcType=VARCHAR}, #{total,jdbcType=VARCHAR}, 
+      #{gnames,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{statecn,jdbcType=VARCHAR}, #{pnote,jdbcType=VARCHAR}, 
+      #{pf,jdbcType=VARCHAR}, #{gcounts,jdbcType=VARCHAR}, #{ydate,jdbcType=VARCHAR}, 
+      #{tc,jdbcType=VARCHAR},#{actual_service_start_time,jdbcType=TIMESTAMP},
+      #{actual_service_end_time,jdbcType=TIMESTAMP},#{worker_free_time_after_this_bill,jdbcType=TIMESTAMP},
+      #{service_duration_hours_applied,jdbcType=DECIMAL},#{travel_time_hours_applied,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ideabobo.model.Bill">
+    insert into wct_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gids != null">
+        gids,
+      </if>
+      <if test="user != null">
+        user,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="shop != null">
+        shop,
+      </if>
+      <if test="ndate != null">
+        ndate,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="gnames != null">
+        gnames,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="statecn != null">
+        statecn,
+      </if>
+      <if test="pnote != null">
+        pnote,
+      </if>
+      <if test="pf != null">
+        pf,
+      </if>
+      <if test="gcounts != null">
+        gcounts,
+      </if>
+      <if test="ydate != null">
+        ydate,
+      </if>
+      <if test="tc != null">
+        tc,
+      </if>
+      <if test="actual_service_start_time != null">
+        actual_service_start_time,
+      </if>
+      <if test="actual_service_end_time != null">
+        actual_service_end_time,
+      </if>
+      <if test="worker_free_time_after_this_bill != null">
+        worker_free_time_after_this_bill,
+      </if>
+      <if test="service_duration_hours_applied != null">
+        service_duration_hours_applied,
+      </if>
+      <if test=" travel_time_hours_applied!= null">
+        travel_time_hours_applied,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gids != null">
+        #{gids,jdbcType=VARCHAR},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="shop != null">
+        #{shop,jdbcType=VARCHAR},
+      </if>
+      <if test="ndate != null">
+        #{ndate,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="gnames != null">
+        #{gnames,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="statecn != null">
+        #{statecn,jdbcType=VARCHAR},
+      </if>
+      <if test="pnote != null">
+        #{pnote,jdbcType=VARCHAR},
+      </if>
+      <if test="pf != null">
+        #{pf,jdbcType=VARCHAR},
+      </if>
+      <if test="gcounts != null">
+        #{gcounts,jdbcType=VARCHAR},
+      </if>
+      <if test="ydate != null">
+        #{ydate,jdbcType=VARCHAR},
+      </if>
+      <if test="tc != null">
+        #{tc,jdbcType=VARCHAR},
+      </if>
+      <if test="actual_service_start_time != null">
+        #{actual_service_start_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actual_service_end_time != null">
+        #{actual_service_end_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="worker_free_time_after_this_bill != null">
+        #{worker_free_time_after_this_bill,jdbcType=TIMESTAMP},
+      </if>
+      <if test="service_duration_hours_applied != null">
+        #{service_duration_hours_applied,jdbcType=DECIMAL},
+      </if>
+      <if test="travel_time_hours_applied != null">
+        #{travel_time_hours_applied,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ideabobo.model.Bill">
+    update wct_bill
+    <set>
+      <if test="gids != null">
+        gids = #{gids,jdbcType=VARCHAR},
+      </if>
+      <if test="user != null">
+        user = #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="shop != null">
+        shop = #{shop,jdbcType=VARCHAR},
+      </if>
+      <if test="ndate != null">
+        ndate = #{ndate,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="gnames != null">
+        gnames = #{gnames,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="statecn != null">
+        statecn = #{statecn,jdbcType=VARCHAR},
+      </if>
+      <if test="pnote != null">
+        pnote = #{pnote,jdbcType=VARCHAR},
+      </if>
+      <if test="pf != null">
+        pf = #{pf,jdbcType=VARCHAR},
+      </if>
+      <if test="gcounts != null">
+        gcounts = #{gcounts,jdbcType=VARCHAR},
+      </if>
+      <if test="ydate != null">
+        ydate = #{ydate,jdbcType=VARCHAR},
+      </if>
+      <if test="tc != null">
+        tc = #{tc,jdbcType=VARCHAR},
+      </if>
+      <if test=" actual_service_start_time != null">
+        actual_service_start_time = #{actual_service_start_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actual_service_end_time != null">
+        actual_service_end_time = #{actual_service_end_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test=" worker_free_time_after_this_bill != null">
+        worker_free_time_after_this_bill = #{worker_free_time_after_this_bill,jdbcType=TIMESTAMP},
+      </if>
+      <if test="service_duration_hours_applied != null">
+        service_duration_hours_applied = #{service_duration_hours_applied,jdbcType=DECIMAL},
+      </if>
+      <if test="travel_time_hours_applied != null">
+        travel_time_hours_applied = #{travel_time_hours_applied,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ideabobo.model.Bill">
+    update wct_bill
+    set gids = #{gids,jdbcType=VARCHAR},
+      user = #{user,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      shop = #{shop,jdbcType=VARCHAR},
+      ndate = #{ndate,jdbcType=VARCHAR},
+      total = #{total,jdbcType=VARCHAR},
+      gnames = #{gnames,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      statecn = #{statecn,jdbcType=VARCHAR},
+      pnote = #{pnote,jdbcType=VARCHAR},
+      pf = #{pf,jdbcType=VARCHAR},
+      gcounts = #{gcounts,jdbcType=VARCHAR},
+      ydate = #{ydate,jdbcType=VARCHAR},
+      tc = #{tc,jdbcType=VARCHAR},
+      actual_service_start_time = #{actual_service_start_time,jdbcType=TIMESTAMP},
+      actual_service_end_time = #{actual_service_end_time,jdbcType=TIMESTAMP},
+      worker_free_time_after_this_bill = #{worker_free_time_after_this_bill,jdbcType=TIMESTAMP},
+      service_duration_hours_applied = #{service_duration_hours_applied,jdbcType=DECIMAL},
+      travel_time_hours_applied = #{travel_time_hours_applied,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findConfirmedBillsByWorkerAndDate" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM wct_bill
+    WHERE uid3 = #{workerId,jdbcType=VARCHAR} AND DATE(yuyuetime) = DATE(#{dateStr,jdbcType=VARCHAR}) AND status IN ('已派单', '服务中') ORDER BY yuyuetime ASC
+  </select>
+</mapper>

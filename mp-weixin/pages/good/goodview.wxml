@@ -1,0 +1,24 @@
+<view>
+  <u-navbar
+    vue-id="f0b3e3ca-1"
+    title="{{title}}"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <imglist
+      vue-id="f0b3e3ca-2"
+      imgSize="{{10}}"
+      imgName="img"
+      titleName="gname"
+      dataList="{{fobjList}}"
+      sName="shop"
+      tName="price"
+      data-event-opts="{{[['^clickItem',[['toGoodDetail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>

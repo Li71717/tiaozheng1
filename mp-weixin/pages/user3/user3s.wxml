@@ -1,0 +1,25 @@
+<view>
+  <u-navbar
+    vue-id="26c81eca-1"
+    title="服务人员"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{false}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <img-list
+      vue-id="26c81eca-2"
+      imgSize="{{2}}"
+      imgName="img"
+      titleName="fname"
+      dataList="{{fobjList}}"
+      sName="note"
+      data-event-opts="{{[['^clickItem',[['user3Detail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></img-list>
+  </scroll-view>
+</view>

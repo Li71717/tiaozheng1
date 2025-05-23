@@ -1,0 +1,32 @@
+<view>
+  <u-navbar
+    vue-id="378cfbac-1"
+    title="管理订单"
+    border="{{true}}"
+    placeholder="{{true}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <u-tabs
+      vue-id="378cfbac-2"
+      list="{{typelist}}"
+      keyName="title"
+      data-event-opts="{{[['^change',[['onTabChange']]]]}}"
+      bind:change="__e"
+      bind:__l="__l"
+    ></u-tabs>
+    <img-list
+      vue-id="378cfbac-3"
+      dataList="{{fobjlist}}"
+      imgSize="{{20}}"
+      titleName="ndate"
+      sName="gnames"
+      tName="statecn"
+      data-event-opts="{{[['^clickItem',[['fobjDetail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></img-list>
+  </scroll-view>
+</view>

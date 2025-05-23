@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="./__PUBLIC__/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="./__PUBLIC__/js/common.js"></script>
+    <link rel="stylesheet" href="./__PUBLIC__/elementui-vue/index.css" />
+    <link rel="stylesheet" href="./__PUBLIC__/elementui-vue/public.css" />
+    <script src="./__PUBLIC__/elementui-vue/vue.global.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/icons-vue.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/element-plus.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/zh-cn.js"></script>
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data" id="uploadForm">
+    <input style="display: none;" id="selectimginput" onchange="showPicImg(this.files);" name="file" type="file"/>
+</form>
+<form action="" method="post" enctype="multipart/form-data" id="uploadForm2">
+    <input style="display: none;" id="selectimginput2" onchange="showPicImg2(this.files);" name="file" type="file"/>
+</form>
+<div id="app">
+    <el-container>
+        <el-header style="height: auto;">
+            <div class="searchctn">
+                <el-form :model="sobj" :inline="true" label-width="auto">
+                    <el-form-item label="标题">
+                        <el-input v-model="sobj.gname" ></el-input>
+                    </el-form-item>
+                    <el-form-item label="服务人员">
+                        <el-input v-model="sobj.shop" ></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="refreshData">搜索</el-button>
+                        <el-button type="success" @click="toReset">重置</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </el-header>
+        <el-main>
+            <div class="datagridctn">
+                <div class="tablectn">
+                    <div class="tabletoolbarctn">
+                        <el-button type="danger" @click="showEdit(null)">新增</el-button>
+                    </div>
+
+                    <el-table stripe v-loading="loading" :data="dataSource" current-row-key="id" :highlight-current-row="true" :show-overflow-tooltip="true" style="width: 100%">
+                        <el-table-column prop="id" sortable label="编号" width="100px" align="center"></el-table-column>
+                        <el-table-column prop="gname" label="标题" align="center"></el-table-column>
+                        <el-table-column label="配图" width="100px" align="center">
+                            <template #default="scope">
+                                <img :src="fileurl+scope.row.img" style="width: 50px;height: 50px;">
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="shop" label="服务人员" align="center"></el-table-column>
+                        <el-table-column prop="price" sortable label="价格" align="center"></el-table-column>
+                        <el-table-column prop="statecn" label="状态" align="center"></el-table-column>
+                        <el-table-column prop="type" label="分类" align="center"></el-table-column>
+                        <el-table-column fixed="right" label="操作" width="260" align="center">
+                            <template #default="scope">
+                                <el-button link type="primary" size="small" @click="showEdit(scope.row)">查看编辑</el-button>
+                                <!--<el-button link type="primary" size="small" @click="showFtable(scope.row)">编辑规格</el-button>-->
+                                <el-button link type="primary" size="small" @click="showStable(scope.row)">评论列表</el-button>
+                                <el-button link type="danger" size="small" @click="del(scope.row.id)">删除</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+
+                <div class="paginationctn">
+                    <el-pagination v-model:current-page="page.current" v-model:page-size="page.limit" :page-sizes="[100, 200, 300, 400]" layout="total, sizes, prev, pager, next, jumper" :total="page.total" @size-change="refreshData" @current-change="refreshData"></el-pagination>
+                </div>
+            </div>
+
+            <div class="formdialog" v-show="showe">
+                <div class="formdialogtitle">查看编辑<span class="formdialogtitlegb" @click="showe=false"></span></div>
+                <el-form ref="fobjform1" :model="fobj" label-width="auto">
+                    <el-form-item label="标题" prop="gname" :rules="formRules">
+                        <el-input type="text" v-model="fobj.gname"></el-input>
+                    </el-form-item>
+                    <el-form-item v-if="luser.roletype=='1'" label="服务人员" prop="sid">
+                        <el-select v-model="fobj.sid" class="m-2" placeholder="请选择" size="large" style="width: 240px">
+                            <el-option v-for="item in shoplist" :label="item.label" :value="item.value" ></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item label="分类" prop="typeid">
+                        <el-select :change="typeSelect()" v-model="fobj.typeid" class="m-2" placeholder="请选择" size="large" style="width: 240px">
+                            <el-option v-for="item in typelist" :label="item.label" :value="item.value" ></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item label="子分类" prop="ctypeid">
+                        <el-select v-model="fobj.ctypeid" class="m-2" placeholder="请选择" size="large" style="width: 240px">
+                            <el-option v-for="item in subtypelist" :label="item.label" :value="item.value" ></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item label="状态">
+                        <el-select v-model="fobj.statecn" class="m-2" placeholder="请选择" size="large" style="width: 240px">
+                            <el-option label="上架中" value="上架中" ></el-option>
+                            <el-option label="已下架" value="已下架" ></el-option>
+                        </el-select>
+                    </el-form-item>
+
+
+
+                    <el-form-item label="价格" prop="price" :rules="formRules">
+                        <el-input type="number" v-model="fobj.price"></el-input>
+                    </el-form-item>
+
+                    <div style="text-align: center;margin-bottom: 20px;">
+                        <div style="width: 150px;margin-left: 35%;">
+                            <div style="text-align: center;">
+                                <div style="text-align: center;" id="imgctn"></div>
+                                <a href="#" onclick="getFileInput(this);">选择封面</a>
+                            </div>
+                        </div>
+                    </div>
+                    <el-form-item label="备注">
+                        <div id="editor" style="width: 480px;height: 400px;">
+
+                        </div>
+                    </el-form-item>
+                    <el-form-item style="text-align: center;margin-top: 50px;">
+                        <el-button type="success" @click="submit1">提交</el-button>
+                        <el-button type="danger" @click="cancel">取消</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+
+            <el-dialog v-model="showt" title="管理子列表" width="70%">
+                <el-container>
+                    <el-header style="height: auto;">
+                        <div class="searchctn">
+                            <el-form :model="sobj2" :inline="true" label-width="auto">
+                                <el-form-item label="标题">
+                                    <el-input v-model="sobj2.gname" ></el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button type="primary" @click="refreshData2">搜索</el-button>
+                                    <el-button type="success" @click="toReset2">重置</el-button>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                    </el-header>
+                    <el-main>
+                        <div class="datagridctn">
+                            <div class="tablectn">
+                                <div class="tabletoolbarctn">
+                                    <el-button type="danger" @click="showEdit2(null)">新增</el-button>
+                                </div>
+
+                                <el-table stripe v-loading="loading2" :data="dataSource2" current-row-key="id" :highlight-current-row="true" :show-overflow-tooltip="true" style="width: 100%">
+                                    <el-table-column prop="id" sortable label="编号" align="center"></el-table-column>
+                                    <el-table-column prop="note" label="内容" align="center"></el-table-column>
+                                    <el-table-column prop="ndate" label="日期" align="center"></el-table-column>
+                                    <el-table-column prop="username" label="用户" align="center"></el-table-column>
+                                    <el-table-column fixed="right" label="操作" width="200" align="center">
+                                        <template #default="scope">
+                                            <el-button link type="primary" size="small" @click="showEdit2(scope.row)">查看编辑</el-button>
+                                            <el-button link type="danger" size="small" @click="del2(scope.row.id)">删除</el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+
+                            <div class="paginationctn">
+                                <el-pagination v-model:current-page="page2.current" v-model:page-size="page2.limit" :page-sizes="[100, 200, 300, 400]" layout="total, sizes, prev, pager, next, jumper" :total="page2.total" @size-change="refreshData2" @current-change="refreshData2"></el-pagination>
+                            </div>
+                        </div>
+                        <div class="formdialog" v-show="showe2">
+                            <div class="formdialogtitle">查看编辑<span class="formdialogtitlegb" @click="showe2=false"></span></div>
+                            <el-form ref="fobjform2" :model="fobj2" label-width="auto">
+                                <el-form-item label="内容" prop="note" :rules="formRules">
+                                    <el-input type="textarea" v-model="fobj2.note"></el-input>
+                                </el-form-item>
+                                <!--<div style="text-align: center;margin-bottom: 20px;">
+                                    <div style="width: 150px;margin-left: 35%;">
+                                        <div style="text-align: center;">
+                                            <div style="text-align: center;" id="imgctn2"></div>
+                                            <a href="#" onclick="getFileInput2(this);">选择封面</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <el-form-item label="备注">
+                                    <div id="editor2" style="width: 480px;height: 400px;">
+
+                                    </div>
+                                </el-form-item>-->
+                                <el-form-item style="text-align: center;margin-top: 50px;">
+                                    <el-button type="success" @click="submit2">提交</el-button>
+                                    <el-button type="danger" @click="showe2=false">取消</el-button>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                    </el-main>
+                    <el-footer></el-footer>
+                </el-container>
+
+            </el-dialog>
+
+
+            <el-dialog v-model="showf" title="管理规格" width="70%">
+                <el-container>
+
+                    <el-main>
+                        <div class="datagridctn">
+                            <div class="tablectn">
+                                <div class="tabletoolbarctn">
+                                    <el-button type="danger" @click="showEdit3(null)">新增</el-button>
+                                </div>
+
+                                <el-table stripe v-loading="loading3" :data="dataSource3" current-row-key="id" :highlight-current-row="true" :show-overflow-tooltip="true" style="width: 100%">
+                                    <el-table-column prop="id" sortable label="编号" align="center"></el-table-column>
+                                    <el-table-column prop="title" label="标题" align="center"></el-table-column>
+                                    <el-table-column prop="ndate" label="日期" align="center"></el-table-column>
+                                    <el-table-column prop="price" label="价格" align="center"></el-table-column>
+                                    <el-table-column fixed="right" label="操作" width="200" align="center">
+                                        <template #default="scope">
+                                            <el-button link type="primary" size="small" @click="showEdit3(scope.row)">查看编辑</el-button>
+                                            <el-button link type="danger" size="small" @click="del3(scope.row.id)">删除</el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+
+                            <div class="paginationctn">
+                                <el-pagination v-model:current-page="page3.current" v-model:page-size="page3.limit" :page-sizes="[100, 200, 300, 400]" layout="total, sizes, prev, pager, next, jumper" :total="page3.total" @size-change="refreshData3" @current-change="refreshData3"></el-pagination>
+                            </div>
+                        </div>
+                        <div class="formdialog" v-show="showe3">
+                            <div class="formdialogtitle">查看编辑<span class="formdialogtitlegb" @click="showe3=false"></span></div>
+                            <el-form ref="fobjform3" :model="fobj3" label-width="auto">
+                                <el-form-item label="标题" prop="title" :rules="formRules">
+                                    <el-input type="text" v-model="fobj3.title"></el-input>
+                                </el-form-item>
+                                <el-form-item label="价格" prop="price" :rules="formRules">
+                                    <el-input type="text" v-model="fobj3.price"></el-input>
+                                </el-form-item>
+                                <!--<div style="text-align: center;margin-bottom: 20px;">
+                                    <div style="width: 150px;margin-left: 35%;">
+                                        <div style="text-align: center;">
+                                            <div style="text-align: center;" id="imgctn2"></div>
+                                            <a href="#" onclick="getFileInput2(this);">选择封面</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <el-form-item label="备注">
+                                    <div id="editor2" style="width: 480px;height: 400px;">
+
+                                    </div>
+                                </el-form-item>-->
+                                <el-form-item style="text-align: center;margin-top: 50px;">
+                                    <el-button type="success" @click="submit3">提交</el-button>
+                                    <el-button type="danger" @click="showe3=false">取消</el-button>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                    </el-main>
+                    <el-footer></el-footer>
+                </el-container>
+
+            </el-dialog>
+
+        </el-main>
+        <el-footer></el-footer>
+    </el-container>
+</div>
+
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                formRules:[{required: true, message: '请检查输入...', trigger: 'blur'}],
+                fileurl:fileurl,
+                uploadUrl:uploadUrl,
+                luser:{},
+                typelist:[],
+                subtypelist:[],
+                shoplist:[],
+                tbname:'good',
+                showe:false,
+                sobj:{},
+                fobj:{
+                    typeid:0,
+                    ctypeid:0
+                },
+                page:{ current: 1, limit: 10, total: 100 },
+                selectedKeys:[],
+                loading:false,
+
+                dataSource:[],
+
+
+                tbname2:'replay',
+                pobj:{},
+                showt:false,
+                showe2:false,
+                sobj2:{},
+                fobj2:{
+
+                },
+                page2:{ current: 1, limit: 10, total: 100 },
+                selectedKeys2:[],
+                loading2:false,
+                dataSource2:[],
+
+                tbname3:'guige',
+                showf:false,
+                showe3:false,
+                sobj3:{},
+                fobj3:{
+
+                },
+                page3:{ current: 1, limit: 10, total: 100 },
+                selectedKeys3:[],
+                loading3:false,
+                dataSource3:[]
+            };
+        },
+        mounted() {
+            this.luser = userinfo
+            this.refreshData()
+            ajaxCallback1("list",{table:'type', btype:1},(data) => {
+                for (let s of data) {
+                    s.label=s.title
+                    s.value = s.id+""
+                }
+                this.typelist = data
+                /*this.fobj.typeid = data[0].id*/
+            })
+
+            ajaxCallback1("list",{table:'user', roletype:3},(data) => {
+                for (let s of data) {
+                    s.label=s.username
+                    s.value = s.id+""
+                }
+                this.shoplist = data
+            })
+        },
+        methods: {
+            typeSelect(){
+                ajaxCallback1("list",{table:'type2', pid: this.fobj.typeid, btype:1},(data) => {
+                    for (let s of data) {
+                        s.label=s.title
+                        s.value = s.id
+                    }
+                    this.subtypelist = data
+                    if(this.fobj.typeid && !this.fobj.ctypeid && data && data.length){
+                        this.fobj.ctypeid = data[0].id
+                    }
+                })
+            },
+            toReset(){
+                this.sobj = {}
+                this.refreshData()
+            },
+            refreshData(){
+                let s = this.sobj
+                s.btype = 1
+                s.table = this.tbname
+                s.page = this.page.current
+                s.limit = this.page.limit
+                this.loading = true
+                if(userinfo.roletype=='3'){
+                    s.sid =  userinfo.sid
+                }
+                ajaxCallback1('listPage',s,(r)=>{
+                    this.loading = false
+                    this.dataSource = r.rows
+                    this.page.total = r.total
+                })
+            },
+            showEdit(row){
+                this.showe = true
+                if(row){
+                    this.fobj = row
+                    editor.txt.html(row.note);
+                    showAttach("imgctn",row.img)
+                }else{
+                    this.fobj = {}
+                    editor.txt.html("");
+                    showAttach("imgctn","")
+                }
+
+            },
+            submit1(){
+                this.$refs.fobjform1.validate((isValidate, model, errors) => {
+                    if(isValidate){
+                        this.save()
+                    }
+                })
+            },
+            save(){
+                this.fobj.btype = 1
+                this.fobj.table = this.tbname
+                this.fobj.note = editor.txt.html();
+                if(userinfo.roletype == '3'){
+                    this.fobj.sid = userinfo.sid
+                }
+                if(this.fobj.sid){
+                    this.fobj.shop = (this.shoplist.find((item) => item.value == this.fobj.sid)).label
+                }
+                if(this.fobj.typeid){
+                    this.fobj.type = (this.typelist.find((item) => item.value == this.fobj.typeid)).label
+                }
+                if(this.fobj.ctypeid){
+                    this.fobj.ctype = (this.subtypelist.find((item) => item.value == this.fobj.ctypeid)).label
+                }
+
+                ajaxFormUploadFile((rimg)=>{
+                    this.fobj.img = rimg
+                    ajaxCallback("save",this.fobj,(rid) => {
+                        console.log(rid)
+                        this.showe = false
+                        this.refreshData()
+                    });
+                })
+
+            },
+            cancel(){
+                this.showe = false
+            },
+            del(id){
+                ElementPlus.ElMessageBox.alert('确认删除吗?', '提示!', {
+                    confirmButtonText: '确认',
+                    callback: (action) => {
+                        ajaxCallback1("delete",{table: this.tbname, id: id},(r) => {
+                            this.refreshData()
+                        });
+                    }
+                })
+            },
+            sortChange(key, sort) {
+                this.sobj.sort = key
+                this.sobj.order = sort
+                this.refreshData()
+            },
+
+
+            showStable(row){
+                this.showt = true
+                this.sobj2.pid = row.id
+                this.pobj = row
+                this.refreshData2()
+            },
+            toReset2(){
+                this.sobj2 = {}
+                this.refreshData2()
+            },
+            refreshData2(){
+                let s = this.sobj2
+                s.table = this.tbname2
+                s.page = this.page2.current
+                s.limit = this.page2.limit
+                s.type = '1'
+                this.loading2 = true
+                ajaxCallback1('listPage',s,(r)=>{
+                    this.loading2 = false
+                    this.dataSource2 = r.rows
+                    this.page2.total = r.total
+                })
+            },
+            showEdit2(row){
+                this.showe2 = true
+                if(row){
+                    this.fobj2 = row
+                    //editor2.txt.html(row.note);
+                    //showAttach("imgctn",row.img)
+                }else{
+                    this.fobj2 = {}
+                    //editor2.txt.html("");
+                }
+
+            },
+            submit2(){
+                this.$refs.fobjform2.validate((isValidate, model, errors) => {
+                    if(isValidate){
+                        this.save2()
+                    }
+                })
+            },
+            save2(){
+                this.fobj2.table = this.tbname2
+                //this.fobj2.note = editor2.txt.html()
+                this.fobj2.pid = this.pobj.id
+                this.fobj2.username = userinfo.username
+                this.fobj2.uid = userinfo.id
+                this.fobj2.type = '1'
+                ajaxCallback1("save",this.fobj2,(rid) => {
+                    console.log(rid)
+                    this.showe2 = false
+                    this.refreshData2()
+                });
+            },
+            cancel2(){
+                this.showe2 = false
+            },
+            del2(id){
+                ajaxCallback1("delete",{table: this.tbname2, id: id},(r) => {
+                    this.refreshData2()
+                });
+            },
+            sortChange2(key, sort) {
+                this.sobj2.sort = key
+                this.sobj2.order = sort
+                this.refreshData2()
+            },
+
+            showFtable(row){
+                this.showf = true
+                this.sobj3.pid = row.id
+                this.pobj = row
+                this.refreshData3()
+            },
+            toReset3(){
+                this.sobj3 = {}
+                this.refreshData3()
+            },
+            refreshData3(){
+                let s = this.sobj3
+                s.table = this.tbname3
+                s.page = this.page3.current
+                s.limit = this.page3.limit
+                this.loading3 = true
+                ajaxCallback1('listPage',s,(r)=>{
+                    this.loading3 = false
+                    this.dataSource3 = r.rows
+                    this.page3.total = r.total
+                })
+            },
+            showEdit3(row){
+                this.showe3 = true
+                if(row){
+                    this.fobj3 = row
+                    //editor2.txt.html(row.note);
+                    //showAttach("imgctn",row.img)
+                }else{
+                    this.fobj3 = {}
+                    //editor2.txt.html("");
+                }
+
+            },
+            submit3(){
+                this.$refs.fobjform3.validate((isValidate, model, errors) => {
+                    if(isValidate){
+                        this.save3()
+                    }
+                })
+            },
+            save3(){
+                this.fobj3.table = this.tbname3
+                this.fobj3.pid = this.pobj.id
+                //this.fobj2.note = editor2.txt.html()
+                ajaxCallback1("save",this.fobj3,(rid) => {
+                    console.log(rid)
+                    this.showe3 = false
+                    this.refreshData3()
+                });
+            },
+            cancel3(){
+                this.showe3 = false
+            },
+            del3(id){
+                ajaxCallback1("delete",{table: this.tbname3, id: id},(r) => {
+                    this.refreshData3()
+                });
+            },
+            sortChange3(key, sort) {
+                this.sobj3.sort = key
+                this.sobj3.order = sort
+                this.refreshData3()
+            }
+        },
+    };
+    const app = Vue.createApp(App);
+    for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+        app.component(key, component)
+    }
+    app.use(ElementPlus,{
+        locale: ElementPlusLocaleZhCn,
+    });
+    app.mount("#app");
+</script>
+<script type="text/javascript" src="__PUBLIC__/weditor/wangEditor.js"></script>
+
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.config.uploadImgShowBase64 = false;   // 使用 base64 保存图片
+    editor.config.uploadImgServer = _editorUpload;
+    editor.config.uploadVideoServer = _editorUploadVideo;
+    editor.config.uploadFileName = 'file';
+    editor.config.uploadVideoName = 'file';
+    editor.config.zIndex = 0;
+    editor.create()
+
+
+
+    /*var editor2 = new E('#editor2');
+    editor2.config.uploadImgShowBase64 = false;   // 使用 base64 保存图片
+    editor2.config.uploadImgServer = _editorUpload;
+    editor2.config.uploadVideoServer = _editorUploadVideo;
+    editor2.config.uploadFileName = 'file';
+    editor2.config.uploadVideoName = 'file';
+    editor2.config.zIndex = 0;
+    editor2.create()*/
+</script>
+</html>

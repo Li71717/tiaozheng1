@@ -1,0 +1,8 @@
+
+.searchinput.data-v-4028c7ae {
+	border-bottom: 1px #ddd solid;
+	padding: 10rpx;
+	font-size: 28rpx;
+	height: 80rpx;
+}
+

@@ -1,0 +1,60 @@
+<view>
+  <block wx:if="{{fileType==1}}">
+    <image
+      class="timg"
+      mode="widthFix"
+      src="{{fileUrl+fileName}}"
+      data-event-opts="{{[['tap',[['toChooseFile']]]]}}"
+      bindtap="__e"
+    ></image>
+  </block>
+  <block wx:if="{{fileType==2}}">
+    <video
+      class="timg"
+      src="{{fileUrl+fileName}}"
+      data-event-opts="{{[['tap',[['toChooseFile']]]]}}"
+      bindtap="__e"
+    ></video>
+  </block>
+  <block wx:if="{{fileType==3}}">
+    <audio
+      class="timg"
+      src="{{fileUrl+fileName}}"
+      data-event-opts="{{[['tap',[['toChooseFile']]]]}}"
+      bindtap="__e"
+    ></audio>
+  </block>
+  <block wx:if="{{fileType==4}}">
+    <view
+      data-event-opts="{{[['tap',[['toChooseFile']]]]}}"
+      class="filetext"
+      bindtap="__e"
+    >
+      {{fileName}}
+    </view>
+  </block>
+  <block wx:if="{{fileType==0}}">
+    <view
+      data-event-opts="{{[['tap',[['toChooseFile']]]]}}"
+      class="choosefilebtn"
+      bindtap="__e"
+    >
+      <image
+        class="sficon"
+        mode="widthFix"
+        src="http://ideapic-1255600738.cos.ap-guangzhou.myqcloud.com/images/icons/sfile2.png"
+      ></image>
+    </view>
+  </block>
+  <view>
+    <nk-select-file
+      vue-id="55d41c3c-1"
+      btnText="确认选择"
+      value="{{nkshow}}"
+      data-event-opts="{{[['^confirm',[['getPath']]],['^input',[['__set_model',['','nkshow','$event',[]]]]]]}}"
+      bind:confirm="__e"
+      bind:input="__e"
+      bind:__l="__l"
+    ></nk-select-file>
+  </view>
+</view>

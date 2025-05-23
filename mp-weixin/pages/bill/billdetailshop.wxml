@@ -1,0 +1,163 @@
+<view>
+  <u-navbar
+    vue-id="3e6a7779-1"
+    title="订单详情"
+    border="{{true}}"
+    placeholder="{{true}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <view class="formitem">
+      <view class="formlabel" style="color:red;">{{"总价:"+fobj.total+"元"}}</view>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">{{"服务信息:"+fobj.gnames}}</view>
+    </view>
+    <block wx:if="{{fobj.ydate}}">
+      <view class="formitem">
+        <view class="formlabel">{{"预约时间:"+fobj.ydate}}</view>
+      </view>
+    </block>
+    <view class="formitem">
+      <view
+        data-event-opts="{{[['tap',[['toChat',['$event']]]]]}}"
+        class="formlabel"
+        bindtap="__e"
+      >{{"联系人:"+fobj.address}}</view>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">{{"订单日期:"+fobj.ndate}}</view>
+    </view>
+    <view>
+      <u-popup
+        vue-id="3e6a7779-2"
+        closeable="{{true}}"
+        show="{{popshow}}"
+        mode="bottom"
+        data-event-opts="{{[['^close',[['e0']]]]}}"
+        bind:close="__e"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="dialogctn">
+          <form>
+            <u-form-item
+              vue-id="{{('3e6a7779-3')+','+('3e6a7779-2')}}"
+              borderBottom="{{true}}"
+              label-width="76"
+              label=":"
+              prop="kdgs"
+              bind:__l="__l"
+              vue-slots="{{['default']}}"
+            >
+              <u--input
+                bind:input="__e"
+                vue-id="{{('3e6a7779-4')+','+('3e6a7779-3')}}"
+                border="none"
+                value="{{fobj.kdgs}}"
+                data-event-opts="{{[['^input',[['__set_model',['$0','kdgs','$event',[]],['fobj']]]]]}}"
+                bind:__l="__l"
+              ></u--input>
+            </u-form-item>
+            <u-form-item
+              vue-id="{{('3e6a7779-5')+','+('3e6a7779-2')}}"
+              borderBottom="{{true}}"
+              label-width="76"
+              label=":"
+              prop="kddh"
+              bind:__l="__l"
+              vue-slots="{{['default']}}"
+            >
+              <u--input
+                bind:input="__e"
+                vue-id="{{('3e6a7779-6')+','+('3e6a7779-5')}}"
+                border="none"
+                value="{{fobj.kddh}}"
+                data-event-opts="{{[['^input',[['__set_model',['$0','kddh','$event',[]],['fobj']]]]]}}"
+                bind:__l="__l"
+              ></u--input>
+            </u-form-item>
+          </form>
+          <view class="formitem">
+            <view class="hpaddingctn">
+              <u-button
+                vue-id="{{('3e6a7779-7')+','+('3e6a7779-2')}}"
+                type="primary"
+                text
+                data-event-opts="{{[['^click',[['fahuo']]]]}}"
+                bind:click="__e"
+                bind:__l="__l"
+              ></u-button>
+            </view>
+          </view>
+        </view>
+      </u-popup>
+    </view>
+    <block wx:if="{{fobj.statecn==='已接单'}}">
+      <view class="formitem">
+        <view class="formitem" style="display:flex;">
+          <view style="padding:20rpx;flex:1;">
+            <u-button
+              vue-id="3e6a7779-8"
+              type="success"
+              text="已完成"
+              data-event-opts="{{[['^click',[['changeBillStatecn',['已完成']]]]]}}"
+              bind:click="__e"
+              bind:__l="__l"
+            ></u-button>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{fobj.statecn==='已付款'}}">
+      <view class="formitem">
+        <view style="display:flex;">
+          <view style="padding:20rpx;flex:1;">
+            <u-button
+              vue-id="3e6a7779-9"
+              type="warning"
+              text="已接单"
+              data-event-opts="{{[['^click',[['changeBillStatecn',['已接单']]]]]}}"
+              bind:click="__e"
+              bind:__l="__l"
+            ></u-button>
+          </view>
+          <view style="padding:20rpx;flex:1;">
+            <u-button
+              vue-id="3e6a7779-10"
+              type="success"
+              text="婉拒订单"
+              data-event-opts="{{[['^click',[['changeBillStatecn',['已取消']]]]]}}"
+              bind:click="__e"
+              bind:__l="__l"
+            ></u-button>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{fobj.pnote}}">
+      <view class="formitem">
+        <view class="formlabel">{{"客户评论:"+fobj.pnote}}</view>
+      </view>
+    </block>
+    <view>
+      <block wx:for="{{fobjgoodlist}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <view
+          data-event-opts="{{[['tap',[['toGoodDetail',['$0',1],[[['fobjgoodlist','',index,'id']]]]]]]}}"
+          class="caritem"
+          bindtap="__e"
+        >
+          <image class="carimg" src="{{fileUrl+item.img}}"></image>
+          <view class="carinfo">
+            <view class="cartitle">{{item.gname}}</view>
+            <view class="carpricectn">
+              <view class="carprice">{{"价格:"+item.price}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

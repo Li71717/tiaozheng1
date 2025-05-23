@@ -1,0 +1,214 @@
+<view class="template-about tn-safe-area-inset-bottom data-v-259fb574">
+  <view class="top-backgroup data-v-259fb574">
+    <image class="backgroud-image data-v-259fb574" src="{{fileUrl+userInfo.img}}" mode="widthFix"></image>
+  </view>
+  <view class="tnwave waveAnimation data-v-259fb574">
+    <view class="waveWrapperInner bgTop data-v-259fb574">
+      <view class="wave waveTop data-v-259fb574" style="background-image:url('../../static/image/wave/wave-2.png');"></view>
+    </view>
+    <view class="waveWrapperInner bgMiddle data-v-259fb574">
+      <view class="wave waveMiddle data-v-259fb574" style="background-image:url('../../static/image/wave/wave-2.png');"></view>
+    </view>
+    <view class="waveWrapperInner bgBottom data-v-259fb574">
+      <view class="wave waveBottom data-v-259fb574" style="background-image:url('../../static/image/wave/wave-1.png');"></view>
+    </view>
+  </view>
+  <view class="about__wrap data-v-259fb574">
+    <view class="user-info__container tn-flex tn-flex-direction-column tn-flex-col-center tn-flex-row-center data-v-259fb574">
+      <view class="user-info__avatar tn-bg-grey--light tn-flex tn-flex-col-center tn-flex-row-center data-v-259fb574">
+        <view class="tn-shadow-blur myphoto data-v-259fb574" style="{{'background:'+('url('+fileUrl+userInfo.img+')')+';'}}"></view>
+      </view>
+      <view class="user-info__nick-name data-v-259fb574">{{userInfo.username}}</view>
+    </view>
+    <view class="about-shadow tn-margin-top-xl tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right data-v-259fb574">
+      <view class="tn-shadow-warp data-v-259fb574" style="margin-top:120rpx;margin-bottom:20rpx;background-color:rgba(255,255,255,1);">
+        <view class="tn-flex data-v-259fb574">
+          <view data-event-opts="{{[['tap',[['toQianbao']]]]}}" class="tn-flex-1 tn-padding-sm tn-margin-xs data-v-259fb574" bindtap="__e">
+            <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center data-v-259fb574">
+              <view class="data-v-259fb574">
+                <view class="tn-text-xxl tn-color-orange data-v-259fb574">{{"¥:"+(mymoney||0)}}</view>
+              </view>
+              <view class="tn-margin-top-xs tn-color-gray tn-text-df tn-text-center data-v-259fb574">
+                <text class="tn-icon-fire data-v-259fb574"></text>
+                <text class="tn-padding-left-xs data-v-259fb574">我的余额</text>
+              </view>
+            </view>
+          </view>
+          <view data-event-opts="{{[['tap',[['toMyFavs',['$event']]]]]}}" class="tn-flex-1 tn-padding-sm tn-margin-xs data-v-259fb574" bindtap="__e">
+            <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center data-v-259fb574">
+              <view class="data-v-259fb574">
+                <view class="tn-text-xxl tn-color-red data-v-259fb574">{{favcount}}</view>
+              </view>
+              <view class="tn-margin-top-xs tn-color-gray tn-text-df tn-text-center data-v-259fb574">
+                <text class="tn-icon-like data-v-259fb574"></text>
+                <text class="tn-padding-left-xs data-v-259fb574">我的收藏</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <tn-list-cell
+        vue-id="8e55f700-1"
+        hover="{{true}}"
+        unlined="{{true}}"
+        radius="{{true}}"
+        fontSize="{{30}}"
+        data-event-opts="{{[['^click',[['toUserDetail']]]]}}"
+        bind:click="__e"
+        class="data-v-259fb574"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="tn-flex tn-flex-col-center data-v-259fb574">
+          <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-5 tn-color-white data-v-259fb574">
+            <view class="tn-icon-moon data-v-259fb574"></view>
+          </view>
+          <view class="tn-margin-left-sm tn-flex-1 data-v-259fb574">个人信息</view>
+          <view class="tn-margin-left-sm tn-color-cyan tn-icon-link data-v-259fb574"></view>
+        </view>
+      </tn-list-cell>
+      <tn-list-cell
+        vue-id="8e55f700-2"
+        hover="{{true}}"
+        unlined="{{true}}"
+        radius="{{true}}"
+        fontSize="{{30}}"
+        data-event-opts="{{[['^click',[['toYouhuiquan']]]]}}"
+        bind:click="__e"
+        class="data-v-259fb574"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="tn-flex tn-flex-col-center data-v-259fb574">
+          <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-8 tn-color-white data-v-259fb574">
+            <view class="tn-icon-message-fill data-v-259fb574"></view>
+          </view>
+          <view class="tn-margin-left-sm tn-flex-1 data-v-259fb574">优惠券</view>
+          <view class="tn-margin-left-sm tn-color-blue tn-icon-copy-fill data-v-259fb574"></view>
+        </view>
+      </tn-list-cell>
+      <tn-list-cell
+        vue-id="8e55f700-3"
+        hover="{{true}}"
+        unlined="{{true}}"
+        radius="{{true}}"
+        fontSize="{{30}}"
+        data-event-opts="{{[['^click',[['toAddress']]]]}}"
+        bind:click="__e"
+        class="data-v-259fb574"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="tn-flex tn-flex-col-center data-v-259fb574">
+          <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-1 tn-color-white data-v-259fb574">
+            <view class="tn-icon-like-fill data-v-259fb574"></view>
+          </view>
+          <view class="tn-margin-left-sm tn-flex-1 data-v-259fb574">管理联系人</view>
+        </view>
+      </tn-list-cell>
+    </view>
+    <view class="about-shadow tn-margin-top-xl tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right data-v-259fb574">
+      <tn-list-cell
+        vue-id="8e55f700-4"
+        hover="{{true}}"
+        unlined="{{true}}"
+        radius="{{true}}"
+        fontSize="{{30}}"
+        data-event-opts="{{[['^click',[['toPosts']]]]}}"
+        bind:click="__e"
+        class="data-v-259fb574"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="tn-flex tn-flex-col-center data-v-259fb574">
+          <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-16 tn-color-white data-v-259fb574">
+            <view class="tn-icon-wechat-fill data-v-259fb574"></view>
+          </view>
+          <view class="tn-margin-left-sm tn-flex-1 data-v-259fb574">交流互动</view>
+          <view class="tn-margin-left-sm tn-color-cyan tn-icon-link data-v-259fb574"></view>
+        </view>
+      </tn-list-cell>
+      <tn-list-cell
+        vue-id="8e55f700-5"
+        hover="{{true}}"
+        unlined="{{true}}"
+        radius="{{true}}"
+        fontSize="{{30}}"
+        data-event-opts="{{[['^click',[['toPostsList']]]]}}"
+        bind:click="__e"
+        class="data-v-259fb574"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="tn-flex tn-flex-col-center data-v-259fb574">
+          <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-16 tn-color-white data-v-259fb574">
+            <view class="tn-icon-wechat data-v-259fb574"></view>
+          </view>
+          <view class="tn-margin-left-sm tn-flex-1 data-v-259fb574">我的发帖</view>
+          <view class="tn-margin-left-sm tn-color-cyan tn-icon-link data-v-259fb574"></view>
+        </view>
+      </tn-list-cell>
+      <tn-list-cell
+        vue-id="8e55f700-6"
+        hover="{{true}}"
+        unlined="{{true}}"
+        radius="{{true}}"
+        fontSize="{{30}}"
+        data-event-opts="{{[['^click',[['toHuihua']]]]}}"
+        bind:click="__e"
+        class="data-v-259fb574"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="tn-flex tn-flex-col-center data-v-259fb574">
+          <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-16 tn-color-white data-v-259fb574">
+            <view class="tn-icon-like-fill data-v-259fb574"></view>
+          </view>
+          <view class="tn-margin-left-sm tn-flex-1 data-v-259fb574">我的消息</view>
+          <view class="tn-margin-left-sm tn-color-cyan tn-icon-link data-v-259fb574"></view>
+        </view>
+      </tn-list-cell>
+      <tn-list-cell
+        vue-id="8e55f700-7"
+        hover="{{true}}"
+        unlined="{{true}}"
+        radius="{{true}}"
+        fontSize="{{30}}"
+        data-event-opts="{{[['^click',[['toHistory']]]]}}"
+        bind:click="__e"
+        class="data-v-259fb574"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="tn-flex tn-flex-col-center data-v-259fb574">
+          <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-6 tn-color-white data-v-259fb574">
+            <view class="tn-icon-phone-fill data-v-259fb574"></view>
+          </view>
+          <view class="tn-margin-left-sm tn-flex-1 data-v-259fb574">历史浏览</view>
+          <view class="tn-margin-left-sm tn-color-orangered tn-text-sm tn-padding-left-xs tn-padding-right-xs tn-bg-orange--disabled tn-round data-v-259fb574"></view>
+        </view>
+      </tn-list-cell>
+      <tn-list-cell
+        vue-id="8e55f700-8"
+        hover="{{true}}"
+        unlined="{{true}}"
+        radius="{{true}}"
+        fontSize="{{30}}"
+        data-event-opts="{{[['^click',[['logOut']]]]}}"
+        bind:click="__e"
+        class="data-v-259fb574"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="tn-flex tn-flex-col-center data-v-259fb574">
+          <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-12 tn-color-white data-v-259fb574">
+            <view class="tn-icon-set-fill data-v-259fb574"></view>
+          </view>
+          <view class="tn-margin-left-sm tn-flex-1 data-v-259fb574">退出登录</view>
+          <view class="tn-margin-left-sm tn-color-red tn-icon-fire-fill data-v-259fb574"></view>
+        </view>
+      </tn-list-cell>
+    </view>
+  </view>
+  <view class="tn-padding-xl data-v-259fb574"></view>
+</view>

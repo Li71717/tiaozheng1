@@ -1,0 +1,25 @@
+
+.choosefilebtn{
+	height: 100rpx;
+	width: 200rpx;
+	text-align: center;
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.sficon{
+	width: 100rpx;
+}
+.sftext{
+	color: #666;
+}
+.timg{
+	width: 50%;
+}
+.filetext{
+	color: #333;
+}
+
+

@@ -1,0 +1,29 @@
+<view>
+  <u-navbar
+    vue-id="66b57268-1"
+    title="我的钱包"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <view class="toplogo">
+      <image src="http://ideapic-1255600738.cos.ap-guangzhou.myqcloud.com/images/qianbao.png" mode="widthFix"></image>
+    </view>
+    <view>
+      <view class="yetitle">我的余额</view>
+      <view class="yecontent">{{"¥"+(userInfo.money||0)}}</view>
+    </view>
+    <view class="hpaddingctn">
+      <u-button
+        vue-id="66b57268-2"
+        type="primary"
+        text="充值"
+        data-event-opts="{{[['^click',[['toCharge']]]]}}"
+        bind:click="__e"
+        bind:__l="__l"
+      ></u-button>
+    </view>
+  </scroll-view>
+</view>

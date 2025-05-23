@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "u-navbar": "/node-modules/uview-ui/components/u-navbar/u-navbar",
+    "imglist": "/components/imglist/imglist",
+    "idea-list": "/components/idea-list/idea-list",
+    "img-list": "/components/img-list"
+  }
+}

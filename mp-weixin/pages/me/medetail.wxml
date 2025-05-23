@@ -1,0 +1,185 @@
+<view>
+  <u-navbar
+    vue-id="38ec614f-1"
+    title="个人信息"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <view class="formitem">
+      <view class="formlabel">选择头像:</view>
+      <idea-upload
+        bind:input="__e"
+        vue-id="38ec614f-2"
+        value="{{filelist}}"
+        data-event-opts="{{[['^input',[['__set_model',['','filelist','$event',[]]]]]]}}"
+        bind:__l="__l"
+      ></idea-upload>
+      <button
+        open-type="chooseAvatar"
+        data-event-opts="{{[['chooseavatar',[['getWxAvatar',['$event']]]]]}}"
+        bindchooseavatar="__e"
+      >设置头像</button>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">用户名:</view>
+      <input
+        class="binput1"
+        id="nickname-input"
+        type="nickname"
+        data-event-opts="{{[['blur',[['setNickName',['$event']]]],['input',[['__set_model',['$0','username','$event',[]],['fobj']]]]]}}"
+        value="{{fobj.username}}"
+        bindblur="__e"
+        bindinput="__e"
+      />
+    </view>
+    <view class="formitem">
+      <view class="formlabel">电话号码:</view>
+      <input
+        class="binput1"
+        type="tel"
+        data-event-opts="{{[['input',[['__set_model',['$0','tel','$event',[]],['fobj']]]]]}}"
+        value="{{fobj.tel}}"
+        bindinput="__e"
+      />
+    </view>
+    <block wx:if="{{fobj.roletype=='3'}}">
+      <block>
+        <ideaslc
+          bind:input="__e"
+          vue-id="38ec614f-3"
+          label="是否接受定制"
+          datalist="{{[['是','否']]}}"
+          value="{{fobj.jsdz}}"
+          data-event-opts="{{[['^input',[['__set_model',['$0','jsdz','$event',[]],['fobj']]]]]}}"
+          bind:__l="__l"
+        ></ideaslc>
+        <u-form-item
+          vue-id="38ec614f-4"
+          label-width="76"
+          label="姓名:"
+          prop
+          borderBottom="1"
+          bind:__l="__l"
+          vue-slots="{{['default']}}"
+        >
+          <u--input
+            bind:input="__e"
+            vue-id="{{('38ec614f-5')+','+('38ec614f-4')}}"
+            border="none"
+            type="text"
+            value="{{fobj.fname}}"
+            data-event-opts="{{[['^input',[['__set_model',['$0','fname','$event',[]],['fobj']]]]]}}"
+            bind:__l="__l"
+          ></u--input>
+        </u-form-item>
+        <u-form-item
+          vue-id="38ec614f-6"
+          label-width="76"
+          label="资格证书号码:"
+          prop
+          borderBottom="1"
+          bind:__l="__l"
+          vue-slots="{{['default']}}"
+        >
+          <u--input
+            bind:input="__e"
+            vue-id="{{('38ec614f-7')+','+('38ec614f-6')}}"
+            border="none"
+            type="text"
+            value="{{fobj.zgzs}}"
+            data-event-opts="{{[['^input',[['__set_model',['$0','zgzs','$event',[]],['fobj']]]]]}}"
+            bind:__l="__l"
+          ></u--input>
+        </u-form-item>
+        <u-form-item
+          vue-id="38ec614f-8"
+          label-width="76"
+          label="身份证:"
+          prop
+          borderBottom="1"
+          bind:__l="__l"
+          vue-slots="{{['default']}}"
+        >
+          <u--input
+            bind:input="__e"
+            vue-id="{{('38ec614f-9')+','+('38ec614f-8')}}"
+            border="none"
+            type="text"
+            value="{{fobj.idcard}}"
+            data-event-opts="{{[['^input',[['__set_model',['$0','idcard','$event',[]],['fobj']]]]]}}"
+            bind:__l="__l"
+          ></u--input>
+        </u-form-item>
+        <view class="formitem">
+          <u--textarea
+            bind:input="__e"
+            vue-id="38ec614f-10"
+            placeholder="健康说明"
+            confirmType="done"
+            value="{{fobj.jk}}"
+            data-event-opts="{{[['^input',[['__set_model',['$0','jk','$event',[]],['fobj']]]]]}}"
+            bind:__l="__l"
+          ></u--textarea>
+        </view>
+        <view class="formitem">
+          <u--textarea
+            bind:input="__e"
+            vue-id="38ec614f-11"
+            placeholder="技能说明"
+            confirmType="done"
+            value="{{fobj.jn}}"
+            data-event-opts="{{[['^input',[['__set_model',['$0','jn','$event',[]],['fobj']]]]]}}"
+            bind:__l="__l"
+          ></u--textarea>
+        </view>
+        <view class="formitem">
+          <u--textarea
+            bind:input="__e"
+            vue-id="38ec614f-12"
+            placeholder="自我描述"
+            confirmType="done"
+            value="{{fobj.note}}"
+            data-event-opts="{{[['^input',[['__set_model',['$0','note','$event',[]],['fobj']]]]]}}"
+            bind:__l="__l"
+          ></u--textarea>
+        </view>
+      </block>
+    </block>
+    <view class="formitem">
+      <view class="formlabel">密码:</view>
+      <input
+        class="binput1"
+        type="password"
+        data-event-opts="{{[['input',[['__set_model',['$0','passwd','$event',[]],['fobj']]]]]}}"
+        value="{{fobj.passwd}}"
+        bindinput="__e"
+      />
+    </view>
+    <view class="formitem">
+      <view class="formlabel">性别:</view>
+      <view>
+        <radio-group
+          data-event-opts="{{[['change',[['showSex',['$event']]]]]}}"
+          bindchange="__e"
+        >
+          <label class="radio">
+            <radio value="男" checked="{{fobj.sex=='男'}}"></radio>男
+          </label>
+          <label class="radio">
+            <radio value="女" checked="{{fobj.sex=='女'}}"></radio>女
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="formitem">
+      <button
+        type="primary"
+        data-event-opts="{{[['tap',[['updateInfo']]]]}}"
+        bindtap="__e"
+      >提交</button>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "nk-select-file": "/components/nk-select-file/nk-select-file"
+  }
+}

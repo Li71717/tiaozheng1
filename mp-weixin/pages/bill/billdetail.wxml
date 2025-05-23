@@ -1,0 +1,237 @@
+<view>
+  <u-navbar
+    vue-id="0effb12f-1"
+    title="订单详情"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{false}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <view class="formitem">
+      <view class="formlabel" style="color:red;">{{"总价:"+fobj.total+"元"}}</view>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">{{"服务信息:"+fobj.gnames}}</view>
+    </view>
+    <block wx:if="{{fobj.ydate}}">
+      <view class="formitem">
+        <view class="formlabel">{{"预约时间:"+fobj.ydate}}</view>
+      </view>
+    </block>
+    <view class="formitem">
+      <view class="formlabel" style="color:red;">{{"状态:"+fobj.statecn}}</view>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">{{"联系人:"+fobj.address}}</view>
+    </view>
+    <block wx:if="{{fobj.shop}}">
+      <view class="formitem" style="display:flex;">
+        <view style="padding:20rpx;flex:1;">
+          <view class="formlabel">{{"服务人员:"+fobj.shop}}</view>
+        </view>
+        <view style="padding:20rpx;flex:1;">
+          <u-button
+            vue-id="0effb12f-2"
+            type="error"
+            text="联系TA"
+            data-event-opts="{{[['^click',[['toChat']]]]}}"
+            bind:click="__e"
+            bind:__l="__l"
+          ></u-button>
+        </view>
+      </view>
+    </block>
+    <view class="formitem">
+      <view class="formlabel">{{"订单日期:"+fobj.ndate}}</view>
+    </view>
+    <view>
+      <u-popup
+        vue-id="0effb12f-3"
+        closeable="{{true}}"
+        show="{{popshow}}"
+        mode="bottom"
+        data-event-opts="{{[['^close',[['e0']]]]}}"
+        bind:close="__e"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <view class="dialogctn">
+          <u--form
+            vue-id="{{('0effb12f-4')+','+('0effb12f-3')}}"
+            bind:__l="__l"
+            vue-slots="{{['default']}}"
+          >
+            <view class="formitem">
+              <view class="formlabel" style="margin-bottom:30rpx;">可用优惠券:</view>
+              <u-radio-group
+                vue-id="{{('0effb12f-5')+','+('0effb12f-4')}}"
+                placement="column"
+                data-event-opts="{{[['^change',[['toggleTotal']]]]}}"
+                bind:change="__e"
+                bind:__l="__l"
+                vue-slots="{{['default']}}"
+              >
+                <block wx:for="{{yhqlist}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                  <u-radio
+                    vue-id="{{('0effb12f-6-'+index)+','+('0effb12f-5')}}"
+                    customStyle="{{({marginBottom:'15px'})}}"
+                    label="{{item.total>0?'优惠券金额:'+item.total:'无优惠券/不使用'}}"
+                    name="{{item.id}}"
+                    bind:__l="__l"
+                  ></u-radio>
+                </block>
+              </u-radio-group>
+            </view>
+            <view class="formitem">
+              <view class="formlabel">
+                支付金额:<text style="color:red;font-size:40rpx;">{{fobj.total}}</text>元
+              </view>
+            </view>
+            <u-form-item
+              vue-id="{{('0effb12f-7')+','+('0effb12f-4')}}"
+              borderBottom="{{true}}"
+              label-width="76"
+              label="支付密码:"
+              prop="passwd"
+              bind:__l="__l"
+              vue-slots="{{['default']}}"
+            >
+              <u--input
+                bind:input="__e"
+                vue-id="{{('0effb12f-8')+','+('0effb12f-7')}}"
+                border="none"
+                type="password"
+                value="{{passwd}}"
+                data-event-opts="{{[['^input',[['__set_model',['','passwd','$event',[]]]]]]}}"
+                bind:__l="__l"
+              ></u--input>
+            </u-form-item>
+            <view class="formitem">
+              <button
+                type="primary"
+                data-event-opts="{{[['tap',[['payBill']]]]}}"
+                bindtap="__e"
+              >确认支付</button>
+            </view>
+          </u--form>
+        </view>
+      </u-popup>
+    </view>
+    <block wx:if="{{fobj.statecn==='待付款'}}">
+      <view class="formitem">
+        <u-button
+          vue-id="0effb12f-9"
+          type="primary"
+          text="立即付款"
+          data-event-opts="{{[['^click',[['e1']]]]}}"
+          bind:click="__e"
+          bind:__l="__l"
+        ></u-button>
+        <view class="hpaddingctn">
+          <u-button
+            vue-id="0effb12f-10"
+            type="error"
+            text="取消订单"
+            data-event-opts="{{[['^click',[['changeBillStatecn',['已取消']]]]]}}"
+            bind:click="__e"
+            bind:__l="__l"
+          ></u-button>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{fobj.statecn==='已接单'}}">
+      <view class="formitem"></view>
+    </block>
+    <block wx:if="{{fobj.statecn==='已完成'}}">
+      <view class="hpaddingctn">
+        <tn-rate
+          bind:input="__e"
+          vue-id="0effb12f-11"
+          size="{{54}}"
+          value="{{pingfen}}"
+          data-event-opts="{{[['^input',[['__set_model',['','pingfen','$event',[]]]]]]}}"
+          bind:__l="__l"
+        ></tn-rate>
+      </view>
+    </block>
+    <block wx:if="{{fobj.statecn==='已完成'}}">
+      <view class="hpaddingctn">
+        <tn-input
+          bind:input="__e"
+          vue-id="0effb12f-12"
+          type="textarea"
+          border="{{true}}"
+          height="{{100}}"
+          autoHeight="{{true}}"
+          value="{{rnote}}"
+          data-event-opts="{{[['^input',[['__set_model',['','rnote','$event',[]]]]]]}}"
+          bind:__l="__l"
+        ></tn-input>
+      </view>
+    </block>
+    <block wx:if="{{fobj.statecn==='已完成'}}">
+      <view class="hpaddingctn">
+        <tn-button
+          vue-id="0effb12f-13"
+          backgroundColor="tn-bg-blue"
+          fontColor="#FFFFFF"
+          width="100%"
+          data-event-opts="{{[['^click',[['pingjia']]]]}}"
+          bind:click="__e"
+          bind:__l="__l"
+          vue-slots="{{['default']}}"
+        >提交评价</tn-button>
+      </view>
+    </block>
+    <block wx:if="{{fobj.statecn==='已完成'&&!fobj.shstatecn}}">
+      <view class="hpaddingctn"></view>
+    </block>
+    <block wx:if="{{fobj.shstatecn==='待处理'}}">
+      <view class="hpaddingctn">
+        <text>售后详情:</text>
+        <view class="formitem">
+          <view class="formlabel">{{"描述:"+fobj.shnote}}</view>
+        </view>
+        <view class="formitem">
+          <view class="formlabel">{{"售后方式:"+fobj.shtype}}</view>
+        </view>
+        <view class="formitem">
+          <view class="formlabel" style="color:red;">{{"售后状态:"+fobj.shstatecn}}</view>
+        </view>
+        <u-button
+          vue-id="0effb12f-14"
+          text="取消售后"
+          type="warning"
+          data-event-opts="{{[['^click',[['qxShouhou']]]]}}"
+          bind:click="__e"
+          bind:__l="__l"
+        ></u-button>
+      </view>
+    </block>
+    <block wx:if="{{fobj.pnote}}">
+      <view class="formitem">
+        <view class="formlabel">{{"客户评论:"+fobj.pnote}}</view>
+      </view>
+    </block>
+    <view>
+      <block wx:for="{{fobjgoodlist}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <view
+          data-event-opts="{{[['tap',[['toGoodDetail',['$0',1],[[['fobjgoodlist','',index,'id']]]]]]]}}"
+          class="caritem"
+          bindtap="__e"
+        >
+          <image class="carimg" src="{{fileUrl+item.img}}"></image>
+          <view class="carinfo">
+            <view class="cartitle">{{item.gname}}</view>
+            <view class="carpricectn">
+              <view class="carprice">{{"价格:"+item.price}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

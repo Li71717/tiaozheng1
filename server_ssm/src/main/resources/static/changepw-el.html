@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="./__PUBLIC__/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="./__PUBLIC__/js/common.js"></script>
+    <link rel="stylesheet" href="./__PUBLIC__/elementui-vue/index.css" />
+    <link rel="stylesheet" href="./__PUBLIC__/elementui-vue/public.css" />
+    <script src="./__PUBLIC__/elementui-vue/vue.global.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/icons-vue.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/element-plus.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/zh-cn.js"></script>
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data" id="uploadForm">
+    <input style="display: none;" id="selectimginput" onchange="showPicImg(this.files);" name="file" type="file"/>
+</form>
+<form action="" method="post" enctype="multipart/form-data" id="uploadForm2">
+    <input style="display: none;" id="selectimginput2" onchange="showPicImg2(this.files);" name="file" type="file"/>
+</form>
+<div id="app">
+    <el-container>
+
+        <el-main>
+
+            <div class="formdialog">
+                <div class="formdialogtitle">修改密码</div>
+                <el-form ref="fobjform1" :model="fobj" label-width="auto">
+                    <el-form-item label="用户名">
+                        <el-input disabled type="text" v-model="luser.username"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="原始密码" prop="oldpasswd" :rules="rules1">
+                        <el-input type="password" v-model="fobj.oldpasswd"></el-input>
+                    </el-form-item>
+                    <el-form-item label="修改密码" prop="passwd" :rules="rules1">
+                        <el-input type="password" v-model="fobj.passwd"></el-input>
+                    </el-form-item>
+                    <el-form-item style="text-align: center;margin-top: 50px;">
+                        <el-button type="success" @click="submit1">保存</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+
+        </el-main>
+        <el-footer></el-footer>
+    </el-container>
+</div>
+
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                formRules:[{required: true, message: '请检查输入...', trigger: 'blur'}],
+                fileurl:fileurl,
+                uploadUrl:uploadUrl,
+                dumpuser:false,
+                tbname:'user',
+                luser:{},
+                fobj:{
+                    oldpasswd:''
+                }
+            }
+        },
+        mounted() {
+            this.luser = userinfo
+            this.fobj = {}
+            this.fobj.oldpasswd = ''
+            this.fobj.passwd = ''
+        },
+        methods: {
+            checkUser(){
+                if(this.fobj.username){
+                    ajaxCallback1("find",{table:'user',username:this.fobj.username},(r) => {
+                        if(r && r.id && !this.fobj.id){
+                            this.dumpuser = true
+                        }else{
+                            this.dumpuser = false
+                        }
+                    });
+                }else{
+                    this.dumpuser = false
+                }
+            },
+
+            submit1(){
+                this.$refs.fobjform1.validate((isValidate, model, errors) => {
+                    if(isValidate){
+                        this.save()
+                    }
+                })
+            },
+            save(){
+                if(this.dumpuser){
+                    alert("用户名已存在")
+                    return
+                }
+                if(this.fobj.oldpasswd != userinfo.passwd){
+                    ElementPlus.ElMessage('原始密码错误')
+                    return;
+                }
+                //this.fobj.note = editor.txt.html();
+                this.luser.table = this.tbname
+
+                ajaxCallback1("save", {table:this.tbname, id: this.luser.id, passwd: this.fobj.passwd},(rid) => {
+                    userinfo = this.fobj
+                    localStorage["adminuserinfo"] = JSON.stringify(userinfo);
+                    ElementPlus.ElMessage({
+                        message:'操作成功',
+                        onClose:()=>{
+                            window.top.location.reload()
+                        }
+                    })
+
+                });
+
+
+            }
+        },
+    };
+    const app = Vue.createApp(App);
+    for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+        app.component(key, component)
+    }
+    app.use(ElementPlus,{
+        locale: ElementPlusLocaleZhCn,
+    });
+    app.mount("#app");
+</script>
+
+</html>

@@ -1,0 +1,27 @@
+<view>
+  <u-navbar
+    vue-id="572315ac-1"
+    title="培训资料"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{false}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <imglist
+      vue-id="572315ac-2"
+      imgName="img"
+      sType="{{2}}"
+      imgSize="{{2}}"
+      fx="{{false}}"
+      titleName="title"
+      sName="ndate"
+      dataList="{{fobjlist}}"
+      data-event-opts="{{[['^clickItem',[['toNoticeDetail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>

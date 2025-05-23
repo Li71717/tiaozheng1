@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "u-navbar": "/node-modules/uview-ui/components/u-navbar/u-navbar",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "u-parse": "/node-modules/uview-ui/components/u-parse/u-parse",
+    "tn-tips": "/tuniao-ui/components/tn-tips/tn-tips",
+    "img-list": "/components/img-list"
+  }
+}

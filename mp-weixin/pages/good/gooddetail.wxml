@@ -1,0 +1,104 @@
+<view>
+  <u-navbar
+    vue-id="6bf4d122-1"
+    title="服务详情"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <block wx:if="{{fobj.img}}">
+      <image class="showimg" src="{{fileUrl+fobj.img}}" mode="widthFix"></image>
+    </block>
+    <view class="formitem">
+      <view class="gprice">{{"价格:"+fobj.price}}</view>
+    </view>
+    <view class="formitem">
+      <view class="gtitle">{{fobj.gname}}</view>
+    </view>
+    <view class="formitem">
+      <view
+        data-event-opts="{{[['tap',[['user3Detail',['$event']]]]]}}"
+        class="gtitle"
+        style="color:#0a66c2;"
+        bindtap="__e"
+      >{{"服务人员:"+fobj.shop}}</view>
+    </view>
+    <u-parse
+      vue-id="6bf4d122-2"
+      content="{{fobj.note}}"
+      bind:__l="__l"
+    ></u-parse>
+    <view>
+      <u-divider vue-id="6bf4d122-3" text="评论列表:" bind:__l="__l"></u-divider>
+    </view>
+    <imglist
+      vue-id="6bf4d122-4"
+      showArrow="{{false}}"
+      showSearch="{{false}}"
+      dataList="{{replaylist}}"
+      imgSize="{{20}}"
+      titleName="ndate"
+      sName="note"
+      tName="username"
+      bind:__l="__l"
+    ></imglist>
+    <view hidden="{{!(showpl)}}" class="hpaddingctn">
+      <tn-input
+        bind:input="__e"
+        vue-id="6bf4d122-5"
+        type="textarea"
+        border="{{true}}"
+        height="{{100}}"
+        autoHeight="{{true}}"
+        value="{{rnote}}"
+        data-event-opts="{{[['^input',[['__set_model',['','rnote','$event',[]]]]]]}}"
+        bind:__l="__l"
+      ></tn-input>
+    </view>
+    <view hidden="{{!(showpl)}}" class="hpaddingctn">
+      <tn-button
+        vue-id="6bf4d122-6"
+        backgroundColor="tn-bg-blue"
+        fontColor="#FFFFFF"
+        width="100%"
+        data-event-opts="{{[['^click',[['replay']]]]}}"
+        bind:click="__e"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >评论</tn-button>
+    </view>
+    <view>
+      <u-divider vue-id="6bf4d122-7" text="服务人员:" bind:__l="__l"></u-divider>
+    </view>
+    <imglist
+      vue-id="6bf4d122-8"
+      show-search="{{false}}"
+      img-name="img"
+      dataList="{{user3list}}"
+      imgSize="{{10}}"
+      titleName="fname"
+      sName="note"
+      tName="jn"
+      data-event-opts="{{[['^clickItem',[['user3Detail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+    <view class="footerctn">
+      <navigator
+        class="gmbtn"
+        url="#"
+        data-event-opts="{{[['tap',[['goumai']]]]}}"
+        bindtap="__e"
+      >立即购买</navigator>
+      <navigator
+        class="scbtn"
+        url="#"
+        data-event-opts="{{[['tap',[['toggleFav']]]]}}"
+        bindtap="__e"
+      >{{favtext}}</navigator>
+    </view>
+    <tn-tips class="vue-ref" vue-id="6bf4d122-9" data-ref="tips" bind:__l="__l"></tn-tips>
+  </scroll-view>
+</view>

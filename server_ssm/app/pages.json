@@ -1,0 +1,166 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
+		"^tn-(.*)": "@/tuniao-ui/components/tn-$1/tn-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/login"
+			
+		},
+		{
+			"path": "pages/login/rootip"
+
+		},
+		{
+			"path": "pages/index/index"
+			
+		},{
+			"path": "pages/index/indexfenlei"
+			
+		}, {
+			"path": "pages/me/me"
+			
+
+		}, {
+			"path": "pages/good/gooddetail"
+			
+
+		}, {
+			"path": "pages/address/address"
+			
+		}, {
+			"path": "pages/address/addressmg"
+			
+		},  {
+			"path": "pages/login/register"
+			
+		},
+		{
+			"path": "pages/me/medetail"
+			
+		}, {
+			"path": "pages/bill/surebill"
+			
+		}, {
+			"path": "pages/bill/bill"
+			
+		}, {
+			"path": "pages/bill/billshop"
+			
+		}, {
+			"path": "pages/bill/billdetailshop"
+			
+		}, {
+			"path": "pages/bill/billdetail"
+			
+		},{
+			"path": "pages/bill/billgongzi"
+
+		}, {
+			"path": "pages/notice/notice"
+			
+		}, {
+			"path": "pages/notice/notice2"
+
+		}, {
+			"path": "pages/notice/noticedetail"
+			
+		}, {
+			"path": "pages/good/good"
+			
+		}, {
+			"path": "pages/good/goodtuijian"
+			
+		}, {
+			"path": "pages/good/goodmg"
+			
+
+		}, {
+			"path": "pages/favs/favs"
+			
+
+		},{
+			"path": "pages/good/goodview"
+			
+
+		}
+	    ,{
+            "path" : "pages/chat/chat"
+            
+            
+        },{
+            "path" : "pages/chat/huihua"
+            
+            
+        },{
+            "path" : "pages/history/history"
+            
+            
+        }
+		,{
+		    "path" : "pages/posts/posts"
+		},{
+		    "path" : "pages/posts/postsdetail"
+		},{
+		    "path" : "pages/posts/postsmg"
+		},{
+		    "path" : "pages/posts/postslist"
+		},{
+		    "path" : "pages/youhuiquan/youhuiquan"
+		}
+        ,{
+            "path" : "pages/qianbao/qianbao"
+            
+        },{
+            "path" : "pages/qianbao/charge"
+            
+        },{
+			"path" : "pages/user3/user3detail"
+
+		},{
+			"path" : "pages/user3/user3s"
+
+		}
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"titleNView": false,
+		"scrollIndicator": "none",
+		"navigationStyle": "custom",
+		"navigationBarRightButton": {
+			"hide": true
+		}
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#ff6037",
+		"backgroundColor": "#fff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"text": "首页",
+			"iconPath": "static/images/tabbar/home-icon1.png",
+			"selectedIconPath": "static/images/tabbar/home-icon1-1.png"
+		},{
+			"pagePath": "pages/index/indexfenlei",
+			"text": "分类",
+			"iconPath": "static/images/tabbar/home-icon2.png",
+			"selectedIconPath": "static/images/tabbar/home-icon2-2.png"
+		}, {
+			"pagePath": "pages/bill/bill",
+			"text": "我的订单",
+			"iconPath": "static/images/tabbar/dingdanb.png",
+			"selectedIconPath": "static/images/tabbar/dingdanf.png"
+		}, {
+			"pagePath": "pages/me/me",
+			"text": "我的",
+			"iconPath": "static/images/tabbar/home-icon4.png",
+			"selectedIconPath": "static/images/tabbar/home-icon4-4.png"
+		}]
+	}
+}

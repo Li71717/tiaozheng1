@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "u-navbar": "/node-modules/uview-ui/components/u-navbar/u-navbar",
+    "u-parse": "/node-modules/uview-ui/components/u-parse/u-parse",
+    "u-divider": "/node-modules/uview-ui/components/u-divider/u-divider",
+    "imglist": "/components/imglist/imglist",
+    "tn-input": "/tuniao-ui/components/tn-input/tn-input",
+    "tn-button": "/tuniao-ui/components/tn-button/tn-button",
+    "tn-tips": "/tuniao-ui/components/tn-tips/tn-tips",
+    "img-list": "/components/img-list"
+  }
+}

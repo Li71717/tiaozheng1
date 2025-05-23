@@ -1,0 +1,8 @@
+
+.swiperimg{
+	width: 100%;
+}
+.mainsearch{
+	margin-top: 10rpx;
+}
+

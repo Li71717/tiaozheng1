@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="./__PUBLIC__/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="./__PUBLIC__/js/common.js"></script>
+    <link rel="stylesheet" href="./__PUBLIC__/elementui-vue/index.css" />
+    <link rel="stylesheet" href="./__PUBLIC__/elementui-vue/public.css" />
+    <script src="./__PUBLIC__/elementui-vue/vue.global.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/icons-vue.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/element-plus.js"></script>
+    <script src="./__PUBLIC__/elementui-vue/zh-cn.js"></script>
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data" id="uploadForm">
+    <input style="display: none;" id="selectimginput" onchange="showPicImg(this.files);" name="file" type="file"/>
+</form>
+<form action="" method="post" enctype="multipart/form-data" id="uploadForm2">
+    <input style="display: none;" id="selectimginput2" onchange="showPicImg2(this.files);" name="file" type="file"/>
+</form>
+<div id="app">
+    <el-container>
+
+        <el-main>
+
+            <div class="formdialog">
+                <div class="formdialogtitle">编辑个人信息</div>
+                <el-form ref="fobjform1" :model="fobj" label-width="auto">
+                    <el-form-item label="用户名" prop="username" :rules="formRules">
+                        <el-input disabled @blur="checkUser" type="text" v-model="fobj.username"></el-input>
+                    </el-form-item>
+                    <div style="text-align: center;margin-bottom: 20px;">
+                        <div style="width: 150px;margin-left: 35%;">
+                            <div style="text-align: center;">
+                                <div style="text-align: center;" id="imgctn"></div>
+                                <a href="#" onclick="getFileInput(this);">头像</a>
+                            </div>
+                        </div>
+                    </div>
+                    <el-form-item label="电话号码" prop="tel" :rules="rules1">
+                        <el-input type="tel" v-model="fobj.tel"></el-input>
+                    </el-form-item>
+                    <el-form-item label="性别" prop="sex">
+                        <el-select v-model="fobj.sex" class="m-2" placeholder="请选择" size="large" style="width: 240px">
+                            <el-option label="男" value="男" ></el-option>
+                            <el-option label="女" value="女" ></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="备注">
+                        <el-input type="textarea" v-model="fobj.note"></el-input>
+                    </el-form-item>
+                    <el-form-item style="text-align: center;margin-top: 50px;">
+                        <el-button type="success" @click="submit1">保存</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+
+        </el-main>
+        <el-footer></el-footer>
+    </el-container>
+</div>
+
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                formRules:[{required: true, message: '请检查输入...', trigger: 'blur'}],
+                fileurl:fileurl,
+                uploadUrl:uploadUrl,
+                dumpuser:false,
+                tbname:'user',
+                fobj:{
+                },
+                rules1:[{
+                    validator(rule, value, callback, source, options){
+                        const regex = /^1[3456789]\d{9}$/
+                        if (regex.test(value)) {
+                            return true;
+                        } else {
+                            callback(new Error(`电话号码不正确`))
+                        }
+                    }
+                }]
+            }
+        },
+        mounted() {
+            this.fobj = userinfo
+            showAttach('imgctn',userinfo.img)
+        },
+        methods: {
+            checkUser(){
+                if(this.fobj.username){
+                    ajaxCallback1("find",{table:'user',username:this.fobj.username},(r) => {
+                        if(r && r.id && !this.fobj.id){
+                            this.dumpuser = true
+                        }else{
+                            this.dumpuser = false
+                        }
+                    });
+                }else{
+                    this.dumpuser = false
+                }
+            },
+
+            submit1(){
+                this.$refs.fobjform1.validate((isValidate, model, errors) => {
+                    if(isValidate){
+                        this.save()
+                    }
+                })
+            },
+            save(){
+                if(this.dumpuser){
+                    alert("用户名已存在")
+                    return
+                }
+                //this.fobj.note = editor.txt.html();
+                this.fobj.table = this.tbname
+                ajaxFormUploadFile((rimg)=>{
+                    this.fobj.img = rimg
+                    ajaxCallback1("save",this.fobj,(rid) => {
+                        userinfo = this.fobj
+                        localStorage["adminuserinfo"] = JSON.stringify(userinfo);
+                        ElementPlus.ElMessage({
+                            message:'操作成功',
+                            onClose:()=>{
+                                window.top.location.reload()
+                            }
+                        })
+
+                    });
+                })
+
+            }
+        },
+    };
+    const app = Vue.createApp(App);
+    for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+        app.component(key, component)
+    }
+    app.use(ElementPlus,{
+        locale: ElementPlusLocaleZhCn,
+    });
+    app.mount("#app");
+</script>
+
+</html>

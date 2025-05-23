@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ideabobo.service.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ideabobo.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="roletype" jdbcType="VARCHAR" property="roletype" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="statecn" jdbcType="VARCHAR" property="statecn" />
+    <result column="favs" jdbcType="VARCHAR" property="favs" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="fname" jdbcType="VARCHAR" property="fname" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="zgzs" jdbcType="VARCHAR" property="zgzs" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="jn" jdbcType="VARCHAR" property="jn" />
+    <result column="jk" jdbcType="VARCHAR" property="jk" />
+    <result column="jsdz" jdbcType="VARCHAR" property="jsdz" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, passwd, roletype, email, tel, sex, img, statecn, favs, money, openid, 
+    fname, idcard, zgzs, note, jn, jk, jsdz
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wct_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wct_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ideabobo.model.User">
+    insert into wct_user (id, username, passwd, 
+      roletype, email, tel, 
+      sex, img, statecn, 
+      favs, money, openid, 
+      fname, idcard, zgzs, 
+      note, jn, jk, jsdz
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{roletype,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{statecn,jdbcType=VARCHAR}, 
+      #{favs,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, 
+      #{fname,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{zgzs,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{jn,jdbcType=VARCHAR}, #{jk,jdbcType=VARCHAR}, #{jsdz,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ideabobo.model.User">
+    insert into wct_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+      <if test="roletype != null">
+        roletype,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="statecn != null">
+        statecn,
+      </if>
+      <if test="favs != null">
+        favs,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="fname != null">
+        fname,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="zgzs != null">
+        zgzs,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="jn != null">
+        jn,
+      </if>
+      <if test="jk != null">
+        jk,
+      </if>
+      <if test="jsdz != null">
+        jsdz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null">
+        #{roletype,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="statecn != null">
+        #{statecn,jdbcType=VARCHAR},
+      </if>
+      <if test="favs != null">
+        #{favs,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null">
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="zgzs != null">
+        #{zgzs,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="jn != null">
+        #{jn,jdbcType=VARCHAR},
+      </if>
+      <if test="jk != null">
+        #{jk,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdz != null">
+        #{jsdz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ideabobo.model.User">
+    update wct_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null">
+        roletype = #{roletype,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="statecn != null">
+        statecn = #{statecn,jdbcType=VARCHAR},
+      </if>
+      <if test="favs != null">
+        favs = #{favs,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null">
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="zgzs != null">
+        zgzs = #{zgzs,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="jn != null">
+        jn = #{jn,jdbcType=VARCHAR},
+      </if>
+      <if test="jk != null">
+        jk = #{jk,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdz != null">
+        jsdz = #{jsdz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ideabobo.model.User">
+    update wct_user
+    set username = #{username,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      roletype = #{roletype,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      statecn = #{statecn,jdbcType=VARCHAR},
+      favs = #{favs,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      openid = #{openid,jdbcType=VARCHAR},
+      fname = #{fname,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      zgzs = #{zgzs,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      jn = #{jn,jdbcType=VARCHAR},
+      jk = #{jk,jdbcType=VARCHAR},
+      jsdz = #{jsdz,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findUsersByRoletype" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM wct_user
+    WHERE roletype = #{roletype,jdbcType=VARCHAR} </select>
+</mapper>

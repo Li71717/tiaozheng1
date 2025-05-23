@@ -1,0 +1,36 @@
+<view>
+  <u-navbar
+    vue-id="27860180-1"
+    title="优惠券"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <u-tabs
+      vue-id="27860180-2"
+      list="{{typelist}}"
+      keyName="title"
+      data-event-opts="{{[['^change',[['onTabChange']]]]}}"
+      bind:change="__e"
+      bind:__l="__l"
+    ></u-tabs>
+    <img-list
+      vue-id="27860180-3"
+      titleLabel="金额:"
+      titleColor="red"
+      sType="{{1}}"
+      dataList="{{showlist}}"
+      imgSize="{{1}}"
+      titleName="total"
+      tLabel="备注:"
+      tName="note"
+      data-event-opts="{{[['^clickItem',[['lingqu']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></img-list>
+  </scroll-view>
+</view>

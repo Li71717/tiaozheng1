@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "u-navbar": "/node-modules/uview-ui/components/u-navbar/u-navbar",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
+    "imglist": "/components/imglist/imglist",
+    "u-divider": "/node-modules/uview-ui/components/u-divider/u-divider"
+  }
+}

@@ -1,0 +1,26 @@
+<view>
+  <u-navbar
+    vue-id="1abf27c0-1"
+    title="我的消息"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <imglist
+      vue-id="1abf27c0-2"
+      round="{{true}}"
+      imgName="img"
+      sType="{{2}}"
+      imgSize="{{1}}"
+      fx="{{false}}"
+      titleName="fusername"
+      tName="note"
+      dataList="{{fobjlist}}"
+      data-event-opts="{{[['^clickItem',[['toChatFriend']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>

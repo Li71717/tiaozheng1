@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ideabobo.service.GoodMapper">
+  <resultMap id="BaseResultMap" type="com.ideabobo.model.Good">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gname" jdbcType="VARCHAR" property="gname" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="typeid" jdbcType="VARCHAR" property="typeid" />
+    <result column="sid" jdbcType="VARCHAR" property="sid" />
+    <result column="shop" jdbcType="VARCHAR" property="shop" />
+    <result column="mcount" jdbcType="VARCHAR" property="mcount" />
+    <result column="btype" jdbcType="VARCHAR" property="btype" />
+    <result column="statecn" jdbcType="VARCHAR" property="statecn" />
+    <result column="ctypeid" jdbcType="INTEGER" property="ctypeid" />
+    <result column="ctype" jdbcType="VARCHAR" property="ctype" />
+    <result column="estimated_service_duration_hours" jdbcType="DECIMAL" property="estimated_service_duration_hours" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gname, price, note, type, img, typeid, sid, shop, mcount, btype, statecn, ctypeid, 
+    ctype, estimated_service_duration_hours
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wct_good
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wct_good
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ideabobo.model.Good">
+    insert into wct_good (id, gname, price, 
+      note, type, img, typeid, 
+      sid, shop, mcount, 
+      btype, statecn, ctypeid, 
+      ctype, estimated_service_duration_hours)
+    values (#{id,jdbcType=INTEGER}, #{gname,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{typeid,jdbcType=VARCHAR}, 
+      #{sid,jdbcType=VARCHAR}, #{shop,jdbcType=VARCHAR}, #{mcount,jdbcType=VARCHAR}, 
+      #{btype,jdbcType=VARCHAR}, #{statecn,jdbcType=VARCHAR}, #{ctypeid,jdbcType=INTEGER}, 
+      #{ctype,jdbcType=VARCHAR}, #{estimated_service_duration_hours,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ideabobo.model.Good">
+    insert into wct_good
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gname != null">
+        gname,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="typeid != null">
+        typeid,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="shop != null">
+        shop,
+      </if>
+      <if test="mcount != null">
+        mcount,
+      </if>
+      <if test="btype != null">
+        btype,
+      </if>
+      <if test="statecn != null">
+        statecn,
+      </if>
+      <if test="ctypeid != null">
+        ctypeid,
+      </if>
+      <if test="ctype != null">
+        ctype,
+      </if>
+      <if test="estimated_service_duration_hours != null">
+        estimated_service_duration_hours,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gname != null">
+        #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="shop != null">
+        #{shop,jdbcType=VARCHAR},
+      </if>
+      <if test="mcount != null">
+        #{mcount,jdbcType=VARCHAR},
+      </if>
+      <if test="btype != null">
+        #{btype,jdbcType=VARCHAR},
+      </if>
+      <if test="statecn != null">
+        #{statecn,jdbcType=VARCHAR},
+      </if>
+      <if test="ctypeid != null">
+        #{ctypeid,jdbcType=INTEGER},
+      </if>
+      <if test="ctype != null">
+        #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="estimated_service_duration_hours != null">
+        #{estimated_service_duration_hours,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ideabobo.model.Good">
+    update wct_good
+    <set>
+      <if test="gname != null">
+        gname = #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null">
+        typeid = #{typeid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="shop != null">
+        shop = #{shop,jdbcType=VARCHAR},
+      </if>
+      <if test="mcount != null">
+        mcount = #{mcount,jdbcType=VARCHAR},
+      </if>
+      <if test="btype != null">
+        btype = #{btype,jdbcType=VARCHAR},
+      </if>
+      <if test="statecn != null">
+        statecn = #{statecn,jdbcType=VARCHAR},
+      </if>
+      <if test="ctypeid != null">
+        ctypeid = #{ctypeid,jdbcType=INTEGER},
+      </if>
+      <if test="ctype != null">
+        ctype = #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="estimated_service_duration_hours != null">
+        estimated_service_duration_hours = #{estimated_service_duration_hours,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ideabobo.model.Good">
+    update wct_good
+    set gname = #{gname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      typeid = #{typeid,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
+      shop = #{shop,jdbcType=VARCHAR},
+      mcount = #{mcount,jdbcType=VARCHAR},
+      btype = #{btype,jdbcType=VARCHAR},
+      statecn = #{statecn,jdbcType=VARCHAR},
+      ctypeid = #{ctypeid,jdbcType=INTEGER},
+      ctype = #{ctype,jdbcType=VARCHAR},
+      estimated_service_duration_hours = #{estimated_service_duration_hours,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,108 @@
+<block wx:if="{{isOpen}}">
+  <view
+    data-event-opts="{{[['touchmove',[['',['$event']]]]]}}"
+    class="file-outerBox"
+    bindtouchmove="__e"
+  >
+    <view style="width:100%;padding-top:--status-bar-height;"></view>
+    <view class="file-titel" style="{{'background-color:'+(navBgColor)+';'}}">
+      <view
+        data-event-opts="{{[['tap',[['backAddress',['$event']]]]]}}"
+        class="file-nav-leftBox"
+        bindtap="__e"
+      >
+        <image class="file-back-img" src="{{backImg}}" mode="widthFix"></image>
+      </view>
+      <text style="{{(titelStyle)}}">{{''+titel+''}}</text>
+      <view class="file-nav-rightBox"></view>
+    </view>
+    <view class="file-address">
+      <view
+        data-event-opts="{{[['tap',[['backRoot',['$event']]]]]}}"
+        class="root-box"
+        bindtap="__e"
+      >
+        <image class="to-img-box" src="{{directionImg}}" mode="widthFix"></image>
+      </view>
+      <scroll-view class="address-scroll" scroll-x="{{true}}">
+        <block wx:for="{{addressBar}}" wx:for-item="item" wx:for-index="index">
+          <view
+            data-event-opts="{{[['tap',[['backFolder',['$0',index],[[['addressBar','',index]]]]]]]}}"
+            class="address-box"
+            bindtap="__e"
+          >
+            {{''+item.name+''}}
+            <image class="to-img-box" src="{{directionImg}}" mode="widthFix"></image>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view>
+      <scroll-view style="{{'height:'+('calc(100vh - '+(barHeight*2+280)+'rpx)')+';'}}" scroll-y="{{true}}">
+        <block wx:if="{{inaccessible}}">
+          <view class="select-tips">
+            <view style="line-height:40rpx;">无法访问的文件夹</view>
+            <view style="line-height:40rpx;">建议前往安卓存储访问框架查看文件</view>
+          </view>
+        </block>
+        <block wx:for="{{folderArr}}" wx:for-item="item" wx:for-index="__i0__">
+          <view
+            data-event-opts="{{[['tap',[['toFolder',['$0'],[[['folderArr','',__i0__]]]]]]]}}"
+            class="folder-box"
+            bindtap="__e"
+          >
+            <view class="folder-name-box">
+              <image class="folder-img" src="{{folderImg}}" mode="widthFix"></image>
+              <view class="name-box">{{item.name}}</view>
+            </view>
+            <view>
+              <image class="toFolder-img" src="{{enterImg}}" mode="widthFix"></image>
+            </view>
+          </view>
+        </block>
+        <block wx:for="{{fileArr}}" wx:for-item="item" wx:for-index="index">
+          <view
+            data-event-opts="{{[['tap',[['selectFile',[index]]]]]}}"
+            class="file-box"
+            bindtap="__e"
+          >
+            <view class="file-name-box">
+              <block wx:if="{{item.type=='file'}}">
+                <image class="file-img" src="{{fileImg}}" mode="widthFix"></image>
+              </block>
+              <block wx:if="{{item.type=='txt'}}">
+                <image class="file-img" src="{{txtImg}}" mode="widthFix"></image>
+              </block>
+              <block wx:if="{{item.type=='doc'}}">
+                <image class="file-img" src="{{docImg}}" mode="widthFix"></image>
+              </block>
+              <block wx:if="{{item.type=='pdf'}}">
+                <image class="file-img" src="{{pdfImg}}" mode="widthFix"></image>
+              </block>
+              <view class="name-box">{{''+item.name+''}}</view>
+            </view>
+            <view>
+              <block wx:if="{{item.select}}">
+                <image class="select-img" src="{{selectedImg}}" mode="widthFix"></image>
+              </block>
+              <block wx:else>
+                <image class="select-img" src="{{unselectedImg}}" mode="widthFix"></image>
+              </block>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view>
+      <button
+        class="select-foot-btn"
+        style="{{(btnStyle)}}"
+        type="default"
+        data-event-opts="{{[['tap',[['uploadBtn',['$event']]]]]}}"
+        bindtap="__e"
+      >
+        {{btnText}}
+      </button>
+    </view>
+  </view>
+</block>

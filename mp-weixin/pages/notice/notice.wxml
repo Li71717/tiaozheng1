@@ -1,0 +1,27 @@
+<view>
+  <u-navbar
+    vue-id="6199cf00-1"
+    title="新闻公告"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{false}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <imglist
+      vue-id="6199cf00-2"
+      imgName="img"
+      sType="{{2}}"
+      imgSize="{{2}}"
+      fx="{{false}}"
+      titleName="title"
+      sName="ndate"
+      dataList="{{fobjlist}}"
+      data-event-opts="{{[['^clickItem',[['toNoticeDetail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>

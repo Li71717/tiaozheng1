@@ -1,0 +1,35 @@
+<view class="data-v-4028c7ae">
+  <input
+    hidden="{{!(showSearch)}}"
+    class="searchinput data-v-4028c7ae"
+    type="text"
+    placeholder="输入关键字搜索..."
+    data-event-opts="{{[['input',[['__set_model',['','searchstr','$event',[]]],['toggleSearch',['$event']]]]]}}"
+    value="{{searchstr}}"
+    bindinput="__e"
+  />
+  <uni-list
+    vue-id="761ea1d0-1"
+    class="data-v-4028c7ae"
+    bind:__l="__l"
+    vue-slots="{{['default']}}"
+  >
+    <block wx:for="{{$root.l0}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+      <uni-list-item
+        data-custom-hidden="{{!(item.m0)}}"
+        vue-id="{{('761ea1d0-2-'+index)+','+('761ea1d0-1')}}"
+        clickable="{{true}}"
+        title="{{item.$orig[titleName]}}"
+        note="{{item.$orig[noteName]}}"
+        showArrow="{{showArrow}}"
+        thumb="{{thumb===null?null:fileUrl+item.$orig[thumb]}}"
+        thumbSize="{{thumbSize}}"
+        rightText="{{item.$orig[rightName]}}"
+        data-event-opts="{{[['^click',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],'id']]]]]]]}}"
+        bind:click="__e"
+        class="data-v-4028c7ae"
+        bind:__l="__l"
+      ></uni-list-item>
+    </block>
+  </uni-list>
+</view>

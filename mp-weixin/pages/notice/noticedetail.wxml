@@ -1,0 +1,29 @@
+<view>
+  <u-navbar
+    vue-id="5c8f4bcf-1"
+    title="详情"
+    border="{{true}}"
+    placeholder="{{true}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <view class="formitem">
+      <view class="formlabel">{{fobj.title}}</view>
+    </view>
+    <view class="formitem">
+      <image class="blockimg" src="{{fileUrl+fobj.img}}" mode="widthFix"></image>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">{{fobj.ndate}}</view>
+    </view>
+    <view class="formitem">
+      <u-parse
+        vue-id="5c8f4bcf-2"
+        content="{{fobj.note}}"
+        bind:__l="__l"
+      ></u-parse>
+    </view>
+  </scroll-view>
+</view>

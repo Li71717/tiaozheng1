@@ -1,0 +1,94 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/login/rootip",
+    "pages/index/index",
+    "pages/index/indexfenlei",
+    "pages/me/me",
+    "pages/good/gooddetail",
+    "pages/address/address",
+    "pages/address/addressmg",
+    "pages/login/register",
+    "pages/me/medetail",
+    "pages/bill/surebill",
+    "pages/bill/bill",
+    "pages/bill/billshop",
+    "pages/bill/billdetailshop",
+    "pages/bill/billdetail",
+    "pages/bill/billgongzi",
+    "pages/notice/notice",
+    "pages/notice/notice2",
+    "pages/notice/noticedetail",
+    "pages/good/good",
+    "pages/good/goodtuijian",
+    "pages/good/goodmg",
+    "pages/favs/favs",
+    "pages/good/goodview",
+    "pages/chat/chat",
+    "pages/chat/huihua",
+    "pages/history/history",
+    "pages/posts/posts",
+    "pages/posts/postsdetail",
+    "pages/posts/postsmg",
+    "pages/posts/postslist",
+    "pages/youhuiquan/youhuiquan",
+    "pages/qianbao/qianbao",
+    "pages/qianbao/charge",
+    "pages/user3/user3detail",
+    "pages/user3/user3s"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "titleNView": false,
+    "scrollIndicator": "none",
+    "navigationStyle": "custom",
+    "navigationBarRightButton": {
+      "hide": true
+    }
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#ff6037",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/tabbar/home-icon1.png",
+        "selectedIconPath": "static/images/tabbar/home-icon1-1.png"
+      },
+      {
+        "pagePath": "pages/index/indexfenlei",
+        "text": "分类",
+        "iconPath": "static/images/tabbar/home-icon2.png",
+        "selectedIconPath": "static/images/tabbar/home-icon2-2.png"
+      },
+      {
+        "pagePath": "pages/bill/bill",
+        "text": "我的订单",
+        "iconPath": "static/images/tabbar/dingdanb.png",
+        "selectedIconPath": "static/images/tabbar/dingdanf.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "static/images/tabbar/home-icon4.png",
+        "selectedIconPath": "static/images/tabbar/home-icon4-4.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "申请获取您的位置"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "usingComponents": {}
+}

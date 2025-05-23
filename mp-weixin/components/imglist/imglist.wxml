@@ -1,0 +1,360 @@
+<view>
+  <view hidden="{{!(showSearch)}}" class="hpaddingctn" style="margin-bottom:10rpx;">
+    <view class="searchctn" style="{{'background-color:'+(bgcolor)+';'}}">
+      <u--input
+        vue-id="6740fe3e-1"
+        placeholder="{{searchPlace}}"
+        prefixIcon="search"
+        prefixIconStyle="font-size: 29px !important;color: #909399"
+        value="{{searchstr}}"
+        data-event-opts="{{[['^input',[['__set_model',['','searchstr','$event',[]]],['toggleSearch']]]]}}"
+        bind:input="__e"
+        bind:__l="__l"
+      ></u--input>
+    </view>
+  </view>
+
+  <!-- imgSize==3 -->
+  <block wx:if="{{imgSize==3}}">
+    <block>
+      <block wx:for="{{$root.l0}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+        <block>
+          <view hidden="{{!(item.m0)}}">
+            <block wx:if="{{htitleName}}">
+              <view class="htitlestatus" style="{{'background-color:'+(bgcolor)+';'}}">
+                <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="htitle" style="{{'color:'+(htitleColor)+';'}}" bindtap="__e">{{''+htitleLabel+item.$orig[htitleName]+''}}</view>
+                <view class="hstatus" style="{{'color:'+(hsColor)+';'}}">{{''+hsLabel+item.m1+''}}</view>
+              </view>
+            </block>
+            <view hidden="{{!(item.m2)}}" class="{{['list_item3 itemStyle'+sType+'']}}" style="{{'background-color:'+(bgcolor)+';'}}">
+              <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="titlectn3" style="{{'color:'+(titleColor)+';'}}" bindtap="__e">{{''+titleLabel+item.$orig[titleName]+''}}</view>
+              <block wx:if="{{item.$orig[imgName]}}">
+                <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bindtap="__e">
+                  <image class="blog_cover3" mode="widthFix" src="{{fileUrl+item.$orig[imgName]}}"></image>
+                </view>
+              </block>
+              <block wx:if="{{sName}}">
+                <view class="sctn3" style="{{'color:'+(sColor)+';'}}">{{''+sLabel+item.m3+''}}</view>
+              </block>
+              <block wx:if="{{tName}}">
+                <view class="tctn3" style="{{'color:'+(tColor)+';'}}">{{''+tLabel+item.$orig[tName]+''}}</view>
+              </block>
+              <block wx:if="{{oLabel}}">
+                <view class="opctn2">
+                  <view class="opitem">
+                    <u-button vue-id="{{'6740fe3e-2-'+index}}" size="mini" plain="{{true}}" type="warning" text="{{oLabel}}" data-event-opts="{{[['^tap',[['opFunction',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-button>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+  </block>
+
+  <!-- imgSize==2 -->
+  <block wx:if="{{imgSize==2}}">
+    <block>
+      <block wx:for="{{$root.l1}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+        <block>
+          <view hidden="{{!(item.m4)}}">
+            <block wx:if="{{htitleName}}">
+              <view class="htitlestatus" style="{{'background-color:'+(bgcolor)+';'}}">
+                <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="htitle" style="{{'color:'+(htitleColor)+';'}}" bindtap="__e">{{''+htitleLabel+item.$orig[htitleName]+''}}</view>
+                <view class="hstatus" style="{{'color:'+(hsColor)+';'}}">{{''+hsLabel+item.m5+''}}</view>
+              </view>
+            </block>
+            <view hidden="{{!(item.m6)}}" class="{{['list_item2 itemStyle'+sType+' '+(sshadow?'fshadow':'')+'']}}" style="{{'flex-direction:'+(fx?'row-reverse':'row')+';'+('background-color:'+(bgcolor)+';')}}">
+              <block wx:if="{{item.$orig[imgName]}}">
+                <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="item_img2" bindtap="__e">
+                  <image class="blog_cover2" src="{{fileUrl+item.$orig[imgName]}}"></image>
+                </view>
+              </block>
+              <view class="item_txt2">
+                <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="titlectn2" style="{{'color:'+(titleColor)+';'}}" bindtap="__e">{{''+titleLabel+item.$orig[titleName]+''}}</view>
+                <view class="sctn2" style="{{'color:'+(sColor)+';'}}">{{''+sLabel+item.m7+''}}</view>
+                <block wx:if="{{tName}}">
+                  <view class="tctn2" style="{{'color:'+(tColor)+';'}}">{{''+tLabel+item.$orig[tName]+''}}</view>
+                </block>
+                <block wx:if="{{oLabel}}">
+                  <view class="opctn2">
+                    <view class="opitem">
+                      <u-button vue-id="{{'6740fe3e-3-'+index}}" size="mini" plain="{{true}}" type="warning" text="{{oLabel}}" data-event-opts="{{[['^tap',[['opFunction',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-button>
+                    </view>
+                  </view>
+                </block>
+                <block wx:if="{{cbox}}">
+                  <view class="opctn2">
+                    <view class="opitem">
+                      <u-checkbox class="imglistcheck" vue-id="{{'6740fe3e-4-'+index}}" name="{{item.$orig[idName]+''}}" bind:__l="__l"></u-checkbox>
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+  </block>
+
+  <!-- imgSize=='timuresult' -->
+  <block wx:if="{{imgSize=='timuresult'}}">
+    <block>
+      <block wx:for="{{$root.l2}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+        <block>
+          <view hidden="{{!(item.m8)}}" class="{{['list_item2 itemStyle'+sType+'']}}" style="{{'flex-direction:'+(fx?'row-reverse':'row')+';'+('background-color:'+(bgcolor)+';')}}">
+            <block wx:if="{{item.$orig[imgName]}}">
+              <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="item_img2" bindtap="__e">
+                <image class="blog_cover2" src="{{fileUrl+item.$orig[imgName]}}"></image>
+              </view>
+            </block>
+            <view class="item_txt2">
+              <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="titlectn2" style="{{'color:'+(titleColor)+';'}}" bindtap="__e">{{''+titleLabel+item.$orig[titleName]+''}}</view>
+              <view class="sctn2" style="{{'color:'+(sColor)+';'}}">{{''+sLabel+item.m9+''}}</view>
+              <block wx:if="{{tName}}">
+                <view class="tctn2" style="{{'color:'+(item.$orig[tName]=='答对'?'green':'red')+';'}}">{{''+tLabel+item.$orig[tName]+''}}</view>
+              </block>
+              <block wx:if="{{oLabel}}">
+                <view class="opctn2">
+                  <view class="opitem">
+                    <u-button vue-id="{{'6740fe3e-5-'+index}}" size="mini" plain="{{true}}" type="warning" text="{{oLabel}}" data-event-opts="{{[['^tap',[['opFunction',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-button>
+                  </view>
+                </view>
+              </block>
+              <block wx:if="{{cbox}}">
+                <view class="opctn2">
+                  <view class="opitem">
+                    <u-checkbox class="imglistcheck" vue-id="{{'6740fe3e-6-'+index}}" name="{{item.$orig[idName]+''}}" bind:__l="__l"></u-checkbox>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+  </block>
+
+  <!-- imgSize==1 -->
+  <block wx:if="{{imgSize==1}}">
+    <block>
+      <block wx:for="{{$root.l3}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+        <block>
+          <view hidden="{{!(item.m10)}}">
+            <block wx:if="{{htitleName}}">
+              <view class="htitlestatus" style="{{'background-color:'+(bgcolor)+';'}}">
+                <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="htitle" style="{{'color:'+(htitleColor)+';'}}" bindtap="__e">{{''+htitleLabel+item.$orig[htitleName]+''}}</view>
+                <view class="hstatus" style="{{'color:'+(hsColor)+';'}}">{{''+hsLabel+item.m11+''}}</view>
+              </view>
+            </block>
+            <view hidden="{{!(item.m12)}}" class="{{['list_item itemStyle'+sType+'']}}" style="{{'flex-direction:'+(fx?'row-reverse':'row')+';'+('background-color:'+(bgcolor)+';')}}">
+              <block wx:if="{{item.$orig[imgName]}}">
+                <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="item_img" bindtap="__e">
+                  <image class="blog_cover" style="{{'border-radius:'+(round?'50upx':'0')+';'}}" src="{{fileUrl+item.$orig[imgName]}}"></image>
+                </view>
+              </block>
+              <view class="item_txt">
+                <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="titlectn" style="{{'color:'+(titleColor)+';'}}" bindtap="__e">{{''+titleLabel+item.$orig[titleName]+''}}</view>
+                <block wx:if="{{tName}}">
+                  <view class="tctn" style="{{'color:'+(tColor)+';'}}">{{''+tLabel+item.m13+''}}</view>
+                </block>
+                <block wx:if="{{oLabel}}">
+                  <view class="opctn2">
+                    <view class="opitem">
+                      <u-button vue-id="{{'6740fe3e-7-'+index}}" size="mini" plain="{{true}}" type="warning" text="{{oLabel}}" data-event-opts="{{[['^tap',[['opFunction',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-button>
+                    </view>
+                  </view>
+                </block>
+                <block wx:if="{{cbox}}">
+                  <view class="opctn2">
+                    <view class="opitem">
+                      <u-checkbox class="imglistcheck" vue-id="{{'6740fe3e-8-'+index}}" name="{{item.$orig[idName]+''}}" checked="{{item.$orig.checked}}" bind:__l="__l"></u-checkbox>
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+  </block>
+
+  <!-- imgSize=='huihua' -->
+  <block wx:if="{{imgSize=='huihua'}}">
+    <block>
+      <block wx:for="{{$root.l4}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+        <block>
+          <view hidden="{{!(item.m14)}}" class="{{['list_item itemStyle'+sType+'']}}" style="{{'flex-direction:'+(fx?'row-reverse':'row')+';'+('background-color:'+(bgcolor)+';')}}">
+            <block wx:if="{{item.$orig[imgName]}}">
+              <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="item_img" bindtap="__e">
+                <image class="blog_cover" style="{{'border-radius:'+(round?'50upx':'0')+';'}}" src="{{fileUrl+item.$orig[imgName]}}"></image>
+              </view>
+            </block>
+            <view class="item_txt">
+              <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="titlectn" style="{{'color:'+(titleColor)+';'}}" bindtap="__e">{{''+titleLabel+item.$orig[titleName]+''}}</view>
+              <block wx:if="{{tName}}">
+                <view class="tctn" style="{{'color:'+(tColor)+';'}}">{{''+tLabel+item.m15+''}}</view>
+              </block>
+              <block wx:if="{{oLabel}}">
+                <view class="opctn2">
+                  <view class="opitem">
+                    <u-button vue-id="{{'6740fe3e-9-'+index}}" size="mini" plain="{{true}}" type="warning" text="{{oLabel}}" data-event-opts="{{[['^tap',[['opFunction',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-button>
+                  </view>
+                </view>
+              </block>
+              <block wx:if="{{cbox}}">
+                <view class="opctn2">
+                  <view class="opitem">
+                    <u-checkbox class="imglistcheck" vue-id="{{'6740fe3e-10-'+index}}" name="{{item.$orig[idName]+''}}" checked="{{item.$orig.checked}}" bind:__l="__l"></u-checkbox>
+                  </view>
+                </view>
+              </block>
+              <block wx:if="{{item.$orig.type==1}}">
+                <view style="position:absolute;width:20rpx;height:20rpx;background-color:red;right:10rpx;border-radius:10rpx;"></view>
+              </block>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+  </block>
+
+  <!-- imgSize==10 -->
+  <block wx:if="{{imgSize==10}}">
+    <block>
+      <view class="{{['waterfall'+cCount+'']}}">
+        <block wx:for="{{$root.l5}}" wx:for-item="item" wx:for-index="__i0__" wx:key="idName">
+          <view hidden="{{!(item.m16)}}" class="{{['waterfallitem0 itemStyle'+sType+'']}}">
+            <block wx:if="{{item.$orig[imgName]}}">
+              <image class="wimg0" mode="widthFix" src="{{fileUrl+item.$orig[imgName]}}" data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList','',__i0__,''+idName+'']]]]]]]}}" bindtap="__e"></image>
+            </block>
+            <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList','',__i0__,''+idName+'']]]]]]]}}" class="wnote0" style="{{'color:'+(titleColor)+';'}}" bindtap="__e">{{''+titleLabel+item.$orig[titleName]}}</view>
+            <block wx:if="{{sName}}">
+              <view class="wnote0" style="{{'color:'+(sColor)+';'}}">{{''+sLabel+item.m17}}</view>
+            </block>
+            <block wx:if="{{tName}}">
+              <view class="wprice0" style="{{'color:'+(tColor)+';'}}">{{tLabel+item.$orig[tName]}}</view>
+            </block>
+            <block wx:if="{{oLabel}}">
+              <view class="opctn2">
+                <view class="opitem">
+                  <u-button vue-id="{{'6740fe3e-11-'+__i0__}}" size="mini" plain="{{true}}" type="warning" text="{{oLabel}}" data-event-opts="{{[['^tap',[['opFunction',['$0'],[[['dataList','',__i0__,''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-button>
+                </view>
+              </view>
+            </block>
+          </view>
+        </block>
+      </view>
+    </block>
+  </block>
+
+  <!-- imgSize==20 -->
+  <block wx:if="{{imgSize==20}}">
+    <block>
+      <view class="u-cell-group">
+        <block wx:for="{{$root.l6}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+          <block wx:if="{{item.m18}}">
+            <u-cell vue-id="{{'6740fe3e-12-'+index}}" icon="{{fileUrl+item.$orig[imgName]}}" title="{{item.$orig[titleName]}}" value="{{item.$orig[tName]}}" label="{{item.m19}}" isLink="{{showArrow}}" data-event-opts="{{[['^tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-cell>
+          </block>
+        </block>
+        <block wx:for="{{$root.l7}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+          <block wx:if="{{item.m20}}">
+            <u-cell vue-id="{{'6740fe3e-13-'+index}}" title="{{item.$orig[titleName]}}" value="{{item.$orig[tName]}}" label="{{item.m21}}" isLink="{{showArrow}}" data-event-opts="{{[['^tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-cell>
+          </block>
+        </block>
+      </view>
+    </block>
+  </block>
+
+  <!-- imgSize=='good' -->
+  <block wx:if="{{imgSize=='good'}}">
+    <block>
+      <block wx:for="{{$root.l8}}" wx:for-item="item" wx:for-index="index" wx:key="idName">
+        <block>
+          <block wx:if="{{htitleName}}">
+            <view class="htitlestatus" style="{{'background-color:'+(bgcolor)+';'}}">
+              <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="htitle" style="{{'color:'+(htitleColor)+';'}}" bindtap="__e">{{''+htitleLabel+item.$orig[htitleName]+''}}</view>
+              <view class="hstatus" style="{{'color:'+(hsColor)+';'}}">{{''+hsLabel+item.m22+''}}</view>
+            </view>
+          </block>
+          <view hidden="{{!(item.m23)}}" class="{{['list_item2 itemStyle'+sType+'']}}" style="{{'flex-direction:'+(fx?'row-reverse':'row')+';'+('background-color:'+(bgcolor)+';')}}">
+            <block wx:if="{{item.$orig[imgName]}}">
+              <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="item_img2" bindtap="__e">
+                <image class="blog_cover2" src="{{fileUrl+item.$orig[imgName]}}"></image>
+              </view>
+            </block>
+            <view class="item_txt2">
+              <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" class="titlectn2" style="{{'color:'+(titleColor)+';'}}" bindtap="__e">{{''+titleLabel+item.$orig[titleName]+''}}</view>
+              <view class="sctn2" style="{{'color:'+(sColor)+';'}}">{{''+sLabel+item.m24+''}}</view>
+              <block wx:if="{{tName}}">
+                <view class="tctn2" style="{{'color:'+(tColor)+';'}}">{{''+tLabel+item.$orig[tName]+''}}</view>
+              </block>
+              <block wx:if="{{oLabel}}">
+                <view class="opctn2">
+                  <view class="opitem">
+                    <u-button vue-id="{{'6740fe3e-14-'+index}}" size="mini" plain="{{true}}" type="warning" text="{{oLabel}}" data-event-opts="{{[['^tap',[['opFunction',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" bind:tap="__e" bind:__l="__l"></u-button>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+  </block>
+
+  <!-- imgSize=='pubu' -->
+  <block wx:if="{{imgSize=='pubu'}}">
+    <block>
+      <view class="waterfall">
+        <block wx:for="{{$root.l9}}" wx:for-item="item" wx:for-index="__i1__" wx:key="idName">
+          <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList',''+idName+'',item.$orig[idName],''+idName+'']]]]]]]}}" hidden="{{!(item.m25)}}" class="{{['waterfallitem itemStyle'+sType+'']}}" bindtap="__e">
+            <block wx:if="{{item.$orig[imgName]}}">
+              <image class="wimg" mode="widthFix" src="{{fileUrl+item.$orig[imgName]}}"></image>
+            </block>
+            <text class="wnote">{{titleLabel+item.$orig[titleName]}}</text>
+            <view class="wuserctn">
+              <block wx:if="{{sName}}">
+                <text class="wname">{{sLabel+item.m26}}</text>
+              </block>
+              <block wx:if="{{tName}}">
+                <text class="wprice">{{tLabel+item.$orig[tName]}}</text>
+              </block>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </block>
+
+  <!-- imgSize=='bloglist' -->
+  <block wx:if="{{imgSize=='bloglist'}}">
+    <block>
+      <block wx:for="{{$root.l10}}" wx:for-item="item" wx:for-index="index" wx:key="id">
+        <view data-event-opts="{{[['tap',[['fatherFun',['$0'],[[['dataList','id',item.$orig.id,'id']]]]]]]}}" hidden="{{!(item.m27)}}" class="{{['blog_item itemStyle'+sType+'']}}" bindtap="__e">
+          <view class="blog_top">
+            <view class="blog_avatar">
+              <image class="blogavatar" src="{{fileUrl+item.$orig.uimg}}"></image>
+            </view>
+            <view class="blog_user">
+              <text class="busername">{{item.$orig.username}}</text>
+              <text class="busernote">{{item.$orig.ndate}}</text>
+            </view>
+          </view>
+          <view class="blog_note">{{''+item.$orig.title+''}}</view>
+          <block wx:if="{{item.$orig.img}}">
+            <view>
+              <image class="blog_cover" mode="widthFix" src="{{fileUrl+item.$orig.img}}"></image>
+            </view>
+          </block>
+          <view class="blog_op">
+            <text>{{item.$orig.zan+"赞"}}</text>
+          </view>
+        </view>
+      </block>
+    </block>
+  </block>
+</view>

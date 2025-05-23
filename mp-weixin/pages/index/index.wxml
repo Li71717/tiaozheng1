@@ -1,0 +1,99 @@
+<view>
+  <u-navbar
+    vue-id="8dd740cc-1"
+    title="首页"
+    leftIconSize="0"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <swiper
+      circular="{{true}}"
+      indicator-dots="{{true}}"
+      autoplay="{{true}}"
+      interval="{{3000}}"
+      duration="{{1000}}"
+    >
+      <block wx:for="{{noticelist}}" wx:for-item="item" wx:for-index="index">
+        <swiper-item data-event-opts="{{[['tap',[['toNotice',['$event']]]]]}}" bindtap="__e">
+          <image class="swiperimg" src="{{fileUrl+item.img}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <block wx:if="{{userInfo.roletype=='3'&&userInfo.statecn=='通过'}}">
+      <view class="formitem" style="display:flex;">
+        <view style="padding:20rpx;flex:1;">
+          <navigator url="/pages/bill/billshop">
+            <u-button vue-id="8dd740cc-2" type="warning" text="管理订单" bind:__l="__l"></u-button>
+          </navigator>
+        </view>
+        <view style="padding:20rpx;flex:1;">
+          <navigator url="/pages/good/good">
+            <u-button vue-id="8dd740cc-3" type="success" text="服务发布" bind:__l="__l"></u-button>
+          </navigator>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{userInfo.roletype=='3'&&userInfo.statecn=='通过'}}">
+      <view class="formitem" style="display:flex;">
+        <view style="padding:20rpx;flex:1;">
+          <navigator url="/pages/bill/billgongzi">
+            <u-button vue-id="8dd740cc-4" type="error" text="工资详情" bind:__l="__l"></u-button>
+          </navigator>
+        </view>
+        <view style="padding:20rpx;flex:1;">
+          <navigator url="/pages/notice/notice2">
+            <u-button vue-id="8dd740cc-5" type="primary" text="培训资料" bind:__l="__l"></u-button>
+          </navigator>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{userInfo.roletype=='2'}}">
+      <view class="formitem" style="display:flex;">
+        <view style="padding:20rpx;flex:1;">
+          <navigator url="/pages/good/goodtuijian">
+            <u-button vue-id="8dd740cc-6" type="error" text="为我推荐" bind:__l="__l"></u-button>
+          </navigator>
+        </view>
+      </view>
+    </block>
+    <u-tabs
+      vue-id="8dd740cc-7"
+      list="{{typelist}}"
+      keyName="title"
+      data-event-opts="{{[['^change',[['refreshGood']]]]}}"
+      bind:change="__e"
+      bind:__l="__l"
+    ></u-tabs>
+    <imglist
+      vue-id="8dd740cc-8"
+      imgName="img"
+      sName="type"
+      tName="price"
+      tLabel="价格:"
+      imgSize="pubu"
+      titleName="gname"
+      dataList="{{fobjList}}"
+      data-event-opts="{{[['^clickItem',[['toGoodDetail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+    <view>
+      <u-divider vue-id="8dd740cc-9" text="服务人员:" bind:__l="__l"></u-divider>
+    </view>
+    <imglist
+      vue-id="8dd740cc-10"
+      img-name="img"
+      dataList="{{user3list}}"
+      imgSize="{{10}}"
+      titleName="fname"
+      sName="note"
+      tName="jn"
+      data-event-opts="{{[['^clickItem',[['user3Detail']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>

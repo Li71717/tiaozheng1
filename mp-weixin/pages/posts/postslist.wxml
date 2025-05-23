@@ -1,0 +1,36 @@
+<view>
+  <u-navbar
+    vue-id="097c14ba-1"
+    title="{{ptitle}}"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{false}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <view class="hpaddingctn">
+      <u-button
+        vue-id="097c14ba-2"
+        type="primary"
+        text="新增"
+        data-event-opts="{{[['^click',[['postsMg']]]]}}"
+        bind:click="__e"
+        bind:__l="__l"
+      ></u-button>
+    </view>
+    <imglist
+      vue-id="097c14ba-3"
+      imgSize="{{2}}"
+      sType="1"
+      titleName="title"
+      dataList="{{fobjList}}"
+      tName="username"
+      sName="ndate"
+      data-event-opts="{{[['^clickItem',[['postsMg']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>

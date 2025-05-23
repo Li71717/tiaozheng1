@@ -1,0 +1,161 @@
+view{
+	box-sizing: border-box;
+}
+.swiperimg{
+	width: 100%;
+}
+.svcontainer{
+		padding: 10px 10px 100px 10px;
+		background-color: #fff;
+		min-height: 1080upx;
+}
+
+.formitem{
+	padding: 20upx 0;
+	border-bottom: 1px #eee solid;
+}
+
+.formlabel{
+	font-size: 30upx;
+	padding: 10upx 0;
+	color: #666;
+}
+.binput1{
+	border: 1px #ddd solid;
+	height: 80upx;
+	padding-left: 10upx;
+	font-size: 28upx;
+}
+
+.dialogctn{
+	background-color: #fff;
+	width: 100%;
+	min-height: 200upx;
+	padding: 20upx;
+	
+}
+
+.selectctn{
+	border: 1px #ddd solid;
+}
+
+
+.gridmenu{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.gridmenuitem{
+	flex: 1;
+	padding: 20upx;
+	text-align: center;	
+}
+.gridmenuicon{
+	width: 100upx;
+	height: 100upx;
+	display: inline-block;
+}
+.gridmenutitle{
+	width: 100%;
+	text-align: center;
+	display: block;
+	color: #666;
+}
+
+.formcontainer{
+	min-height: 300rpx;
+	width: calc(100% - 40rpx);
+	background-color: #FFFFFF;
+	box-shadow: 0 10rpx 40rpx 0 #aaa;
+	margin: 30rpx 30rpx 5rpx 20rpx;
+	border-radius: 20rpx;
+	position: relative;
+	padding: 0 20rpx 20rpx 20rpx;
+	justify-content: center;
+	align-items: center;
+}
+
+.paddingcontianer{
+	padding: 20rpx 20rpx 0 20rpx ;
+}
+
+.hfooter{
+	padding-bottom: 100upx;
+}
+.hpaddingctn{
+	padding-top:10upx;
+	padding-bottom: 10upx;
+}
+.iblocktitle{
+	display: block;
+	padding: 20upx 0 20px;
+	font-size: 36upx;
+}
+
+
+
+.fenleictn{
+	display: flex;
+}
+.fenleilist{
+	width: 160upx;
+	background-color: #fff;
+}
+.fenleicontent{
+	flex: 1;
+	padding: 20upx;
+}
+.fenleiitem{
+	height: 100upx;
+	line-height: 100upx;
+	text-align: center;
+	color: #818284;
+	border-radius: 0;
+	background-color: #f7f8fa;
+}
+.fenleiitemfocus{
+	background-color: #fff !important;
+	color: #333 !important;
+}
+.randbottom{
+	border-bottom-right-radius: 30upx !important;
+}
+
+.randtop{
+	border-top-right-radius: 30upx !important;
+}
+	
+.blockimg{
+	width: 100%;
+}
+
+.footerctn{
+	position: fixed;
+	display: flex;
+	align-items: center;
+	align-content: stretch;
+	flex-direction: row-reverse;
+	height: 100upx;
+	background-color: #efefef;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	justify-content: flex-start;
+	z-index: 999;
+}
+
+.footerctnhasfooter{
+	position: fixed;
+	display: flex;
+	align-items: center;
+	align-content: stretch;
+	flex-direction: row-reverse;
+	height: 100upx;
+	background-color: #efefef;
+	left: 0;
+	bottom: 100rpx;
+	width: 100%;
+	justify-content: flex-start;
+	z-index: 999;
+}

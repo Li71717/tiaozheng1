@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+格式化注意事项
+每个属性都要在一行内完整，不要把 data-event-opts 这种复杂表达式拆开。
+不要随意添加或删除花括号、引号。
+标签嵌套要正确，每个 <xxx></xxx> 必须成对。
+不要在属性名和等号之间加空格（如 title = "xxx" 是错误的，应该是 title="xxx"）。

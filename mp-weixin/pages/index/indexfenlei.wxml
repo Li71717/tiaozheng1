@@ -1,0 +1,64 @@
+<view>
+  <u-navbar
+    vue-id="5281c319-1"
+    title="分类"
+    leftIconSize="0"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view enable-flex="{{true}}">
+    <swiper
+      circular="{{true}}"
+      indicator-dots="{{true}}"
+      autoplay="{{true}}"
+      interval="{{3000}}"
+      duration="{{1000}}"
+    >
+      <block wx:for="{{noticelist}}" wx:for-item="item" wx:for-index="index">
+        <swiper-item data-event-opts="{{[['tap',[['toNotice',['$event']]]]]}}" bindtap="__e">
+          <image class="swiperimg" src="{{fileUrl+item.img}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="fenleictn">
+      <view class="fenleilist">
+        <block wx:for="{{typelist}}" wx:for-item="item" wx:for-index="index" wx:key="id">
+          <view
+            data-event-opts="{{[['tap',[['refreshGood',['$0'],[[['typelist','id',item.id,'id']]]]]]]}}"
+            class="{{[item.style]}}"
+            bindtap="__e"
+          >{{item.title}}</view>
+        </block>
+      </view>
+      <view class="fenleicontent">
+        <u-tabs
+          vue-id="5281c319-2"
+          list="{{ctypelist}}"
+          keyName="title"
+          data-event-opts="{{[['^change',[['refreshGood2']]]]}}"
+          bind:change="__e"
+          bind:__l="__l"
+        ></u-tabs>
+        <img-list
+          vue-id="5281c319-3"
+          sType="{{1}}"
+          titleName="gname"
+          titleColor="#333"
+          sName="type"
+          tName="price"
+          tColor="red"
+          tLabel="价格:"
+          imgName="img"
+          imgSize="2"
+          dataList="{{fobjList}}"
+          data-event-opts="{{[['^clickItem',[['toGoodDetail']]],['^clickOp',[['addCarIndex']]]]}}"
+          bind:clickItem="__e"
+          bind:clickOp="__e"
+          bind:__l="__l"
+        ></img-list>
+      </view>
+    </view>
+  </scroll-view>
+</view>

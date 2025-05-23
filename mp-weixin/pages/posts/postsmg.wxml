@@ -1,0 +1,67 @@
+<view>
+  <u-navbar
+    vue-id="312bb7be-1"
+    title="信息管理"
+    border="{{true}}"
+    placeholder="{{true}}"
+    data-event-opts="{{[['^leftClick',[['goBack']]]]}}"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <view class="formitem">
+      <view class="formlabel">标题:</view>
+      <input
+        class="binput1"
+        type="text"
+        data-event-opts="{{[['input',[['__set_model',['$0','title','$event',[]],['fobj']]]]]}}"
+        value="{{fobj.title}}"
+        bindinput="__e"
+      />
+    </view>
+    <view class="formitem">
+      <view class="formlabel">文件:</view>
+      <fileupload
+        bind:input="__e"
+        vue-id="312bb7be-2"
+        value="{{fobj.img}}"
+        data-event-opts="{{[['^input',[['__set_model',['$0','img','$event',[]],['fobj']]]]]}}"
+        bind:__l="__l"
+      ></fileupload>
+    </view>
+    <view class="formitem">
+      <view class="formlabel">详细信息:</view>
+      <view style="border:1px #ddd solid;">
+        <jin-edit
+          vue-id="312bb7be-3"
+          html="{{editorHtml}}"
+          height="300px"
+          uploadFileUrl="{{uploadUrl}}"
+          placeholder="请输入内容"
+          value="{{fobj.note}}"
+          data-event-opts="{{[['^getEditorContxt',[['getEditorContxt']]],['^editOk',[['editOk']]],['^input',[['__set_model',['$0','note','$event',[]],['fobj']]]]]}}"
+          bind:getEditorContxt="__e"
+          bind:editOk="__e"
+          bind:input="__e"
+          bind:__l="__l"
+        ></jin-edit>
+      </view>
+    </view>
+    <view class="formitem">
+      <button
+        type="primary"
+        data-event-opts="{{[['tap',[['savePosts']]]]}}"
+        bindtap="__e"
+      >提交</button>
+    </view>
+    <block wx:if="{{tid}}">
+      <view class="formitem">
+        <button
+          type="warn"
+          data-event-opts="{{[['tap',[['delPosts']]]]}}"
+          bindtap="__e"
+        >删除</button>
+      </view>
+    </block>
+  </scroll-view>
+</view>

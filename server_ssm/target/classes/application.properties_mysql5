@@ -1,0 +1,17 @@
+#for db
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/yanglaohuodongmg_up_ssm4?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.http.multipart.maxFileSize = 100Mb
+spring.http.multipart.maxRequestSize=100Mb
+
+server.port=8088
+
+mybatis.mapper-locations=classpath:mapper/*.xml
+mybatis.type-aliases-package=com.ideabobo.pojo
+tableprefix=wct_
+tablemappingpackage=com.ideabobo.model
+servicemappingpackage=com.ideabobo.service
+app_id=wx2106d56eae24772e
+app_secret=0518f699152064d287f8c222a0619d50

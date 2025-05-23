@@ -1,0 +1,41 @@
+{
+  "homeInfo": {
+    "title": "服务管理",
+    "href": "goodshop.html"
+  },
+  "logoInfo": {
+    "title": "后台管理系统",
+    "image": "./__PUBLIC__/images/login/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "系统管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+
+        {
+          "title": "服务管理",
+          "href": "goodshop.html",
+          "icon": "fa fa-gears",
+          "target": "_self"
+        },
+        {
+          "title": "订单处理",
+          "href": "billshop.html",
+          "icon": "fa fa-gears",
+          "target": "_self"
+        }
+        ,
+        {
+          "title": "新闻公告",
+          "href": "notice.html",
+          "icon": "fa fa-file-text",
+          "target": "_self"
+        }
+      ]
+    }
+  ]
+}

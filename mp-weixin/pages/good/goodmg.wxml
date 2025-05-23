@@ -1,0 +1,134 @@
+<view>
+  <u-navbar
+    vue-id="4e5c30c6-1"
+    title="服务管理"
+    border="{{true}}"
+    placeholder="{{true}}"
+    autoBack="{{true}}"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <u--form vue-id="4e5c30c6-2" bind:__l="__l" vue-slots="{{['default']}}">
+      <u-form-item
+        vue-id="{{('4e5c30c6-3')+','+('4e5c30c6-2')}}"
+        borderBottom="{{true}}"
+        label-width="76"
+        label="服务名称:"
+        prop="gname"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <u--input
+          bind:input="__e"
+          vue-id="{{('4e5c30c6-4')+','+('4e5c30c6-3')}}"
+          border="none"
+          type="text"
+          value="{{fobj.gname}}"
+          data-event-opts="{{[['^input',[['__set_model',['$0','gname','$event',[]],['fobj']]]]]}}"
+          bind:__l="__l"
+        ></u--input>
+      </u-form-item>
+      <u-form-item
+        vue-id="{{('4e5c30c6-5')+','+('4e5c30c6-2')}}"
+        prop="sex"
+        borderBottom="{{true}}"
+        label-width="76"
+        label="分类:"
+        data-event-opts="{{[['^click',[['e0']]]]}}"
+        bind:click="__e"
+        bind:__l="__l"
+        vue-slots="{{['default','right']}}"
+      >
+        <u--input
+          bind:input="__e"
+          vue-id="{{('4e5c30c6-6')+','+('4e5c30c6-5')}}"
+          border="none"
+          type="select"
+          value="{{fobj.type}}"
+          data-event-opts="{{[['^input',[['__set_model',['$0','type','$event',[]],['fobj']]]]]}}"
+          bind:__l="__l"
+        ></u--input>
+        <u-icon
+          vue-id="{{('4e5c30c6-7')+','+('4e5c30c6-5')}}"
+          slot="right"
+          name="arrow-right"
+          bind:__l="__l"
+        ></u-icon>
+        <u-action-sheet
+          vue-id="{{('4e5c30c6-8')+','+('4e5c30c6-5')}}"
+          show="{{sshow1}}"
+          actions="{{typelist}}"
+          title="请选择分类"
+          description="请选择"
+          data-event-opts="{{[['^close',[['e1']]],['^select',[['tSelected1']]]]}}"
+          bind:close="__e"
+          bind:select="__e"
+          bind:__l="__l"
+        ></u-action-sheet>
+      </u-form-item>
+      <u-form-item
+        vue-id="{{('4e5c30c6-9')+','+('4e5c30c6-2')}}"
+        borderBottom="{{true}}"
+        label-width="76"
+        label="价格:"
+        prop="price"
+        bind:__l="__l"
+        vue-slots="{{['default']}}"
+      >
+        <u--input
+          bind:input="__e"
+          vue-id="{{('4e5c30c6-10')+','+('4e5c30c6-9')}}"
+          type="number"
+          border="none"
+          value="{{fobj.price}}"
+          data-event-opts="{{[['^input',[['__set_model',['$0','price','$event',[]],['fobj']]]]]}}"
+          bind:__l="__l"
+        ></u--input>
+      </u-form-item>
+      <view class="formitem">
+        <view class="formlabel">封面图:</view>
+        <idea-upload
+          bind:input="__e"
+          vue-id="{{('4e5c30c6-11')+','+('4e5c30c6-2')}}"
+          value="{{filelist}}"
+          data-event-opts="{{[['^input',[['__set_model',['','filelist','$event',[]]]]]]}}"
+          bind:__l="__l"
+        ></idea-upload>
+      </view>
+      <view class="formitem">
+        <view class="formlabel">详细信息:</view>
+        <view style="border:1px #ddd solid;">
+          <jin-edit
+            vue-id="{{('4e5c30c6-12')+','+('4e5c30c6-2')}}"
+            html="{{editorHtml}}"
+            height="300px"
+            uploadFileUrl="{{uploadUrl}}"
+            placeholder="请输入内容"
+            value="{{fobj.note}}"
+            data-event-opts="{{[['^getEditorContxt',[['getEditorContxt']]],['^editOk',[['editOk']]],['^input',[['__set_model',['$0','note','$event',[]],['fobj']]]]]}}"
+            bind:getEditorContxt="__e"
+            bind:editOk="__e"
+            bind:input="__e"
+            bind:__l="__l"
+          ></jin-edit>
+        </view>
+      </view>
+    </u--form>
+    <view class="formitem">
+      <button
+        type="primary"
+        data-event-opts="{{[['tap',[['saveGood']]]]}}"
+        bindtap="__e"
+      >提交</button>
+    </view>
+    <block wx:if="{{tid}}">
+      <view class="formitem">
+        <button
+          type="warn"
+          data-event-opts="{{[['tap',[['delGood']]]]}}"
+          bindtap="__e"
+        >删除</button>
+      </view>
+    </block>
+  </scroll-view>
+</view>

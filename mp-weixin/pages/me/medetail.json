@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "u-navbar": "/node-modules/uview-ui/components/u-navbar/u-navbar",
+    "ideaslc": "/components/ideaslc/ideaslc",
+    "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
+    "u--input": "/node-modules/uview-ui/components/u--input/u--input",
+    "u--textarea": "/node-modules/uview-ui/components/u--textarea/u--textarea",
+    "idea-upload": "/components/idea-upload/idea-upload"
+  }
+}

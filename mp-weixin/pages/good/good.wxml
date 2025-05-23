@@ -1,0 +1,26 @@
+<view>
+  <u-navbar
+    vue-id="ebcd5ac0-1"
+    title="管理服务"
+    border="{{true}}"
+    placeholder="{{true}}"
+    rightText="新增"
+    data-event-opts="{{[['^rightClick',[['goodMg']]],['^leftClick',[['goBack']]]]}}"
+    bind:rightClick="__e"
+    bind:leftClick="__e"
+    bind:__l="__l"
+  ></u-navbar>
+  <scroll-view class="svcontainer" enable-flex="{{true}}">
+    <imglist
+      vue-id="ebcd5ac0-2"
+      imgName="img"
+      imgSize="1"
+      titleName="gname"
+      dataList="{{fobjList}}"
+      tName="statecn"
+      data-event-opts="{{[['^clickItem',[['goodMg']]]]}}"
+      bind:clickItem="__e"
+      bind:__l="__l"
+    ></imglist>
+  </scroll-view>
+</view>
